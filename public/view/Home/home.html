@@ -1,0 +1,206 @@
+<div id="homeView" ng-controller="HomeController" ng-init="init();">
+	<ul id="slider-home">
+        <li>
+            <img src="../img/slider1.jpg" />
+            <div class="slide-desc">
+                <h1>Distribuidores Vilkam<p>es provedor en productos y accesorios para soldar.</p></h1>
+            </div>
+        </li>
+        <li>
+            <img src="../img/slider2.png" />
+            <div class="slide-desc">
+                <h1>Estensa línea de máquinas para soldar tipo inversor<p>para electrono revestido, proceso TIG, proceso MIG y multiprocesos.</p></h1>
+            </div>
+        </li>
+        <li>
+            <img src="../img/slider3.jpg" />
+        </li>
+        <li>
+            <img src="../img/slider4.jpg" />
+            <div class="slide-desc">
+                <h1>Elige la mejor solución <p>Para tus procesos de soldadura.</p></h1>
+            </div>
+        </li>
+    </ul>
+    <section id="products-home">
+    	<div class="panel panel-default"><!-- START PANEL -->
+			<div class="panel-heading">
+				<h3 class="panel-title">Productos</h3>
+			</div>
+			<div class="panel-body">
+				<!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center" ng-repeat="product in productsList">-->
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center" ng-repeat="category in categoriesList">
+					<a href="#!/products/{{category.category_alias}}">
+						<div class="thumbnail">
+							<img src="../..{{category.src_img}}">
+							<div class="caption">
+								<h4 class="vertical-text-center">{{category.name}}</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<!-- START CONTENT PANEL BODY -->
+				<!--
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/carros.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Máquinas soldadoras y carros porta máquinas</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/soldaduras.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Soldaduras</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/MIG.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Proceso MIG</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/tig.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Proceso TIG</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/acc_soldar.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Accesorios para soldar</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/oxicorte.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Oxicorte</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/plasma.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Plasma</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/seguridad.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Seguridad</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-center">
+					<a href="">
+						<div class="thumbnail">
+							<img src="../../img/products/oxigenoterapia.png">
+							<div class="caption">
+								<h4 class="vertical-text-center">Oxigenoterápia y Hospitalario</h4>
+							</div>
+						</div>
+					</a>
+				</div>
+				-->				
+				<!-- END CONTENT PANEL BODY -->
+			</div>
+		</div><!-- START PANEL -->
+    </section>
+	<section id="marks">
+		<div class="panel panel-default"><!-- START PANEL -->
+			<div class="panel-heading">
+				<h3 class="panel-title">Marcas</h3>
+			</div>
+			<div class="panel-body marks">
+				<!-- START CONTENT PANEL BODY -->
+				<div id="thumbnail-slider">
+				    <div class="inner">
+				        <ul>
+				        	<li>
+			                	<img src="../../img/logos/logo-esab.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-flame.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-harris.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-hobart.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-hyperterm.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-lincoln.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-miller.jpg" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-miller2.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-smith.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-thermadyne.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-tregaskiss.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-tweco.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				            <li>
+			                	<img src="../../img/logos/logo-weldcraft.png" alt="" style="height: 200px; width: auto;">
+				            </li>
+				        </ul>
+				    </div>
+				</div>
+				<!-- END CONTENT PANEL BODY -->
+			</div>
+		</div><!-- START PANEL -->
+	</section>
+</div>
+<script src="/js/skdslider.min.js"></script>
+<script src="/js/thumbnail-slider.js" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function(){
+        jQuery('#slider-home').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':false,'autoSlide':true,'animationType':'fading'});
+
+        jQuery('#responsive').change(function(){
+          $('#responsive_wrapper').width(jQuery(this).val());
+        });
+    });
+</script>

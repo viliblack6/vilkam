@@ -1,0 +1,34 @@
+<article id="subscription">
+	<form name="subscriptionForm" novalidate="novalidate">
+		<h4>Subscríbete e infórmese de nuestras últimas noticias y ofertas especiales</h4>
+		<div class="form-group">
+			<label for="name">Nombre: <span class="required">*</span></label>
+			<input type="text" class="form-control" id="name" placeholder="Nombre" ng-model="subscription.name" required-err-type="requiredError" required><!--ng-pattern="/^[a-zA-Z]*$/"-->
+		</div>
+		<div class="form-group">
+			<label for="email">Correo electrónico: <span class="required">*</span></label>
+			<input type="email" class="form-control" id="email" placeholder="Correo electrónico" ng-model="subscription.email" required-err-type="emailError" required>
+		</div>
+		<div class="form-group">
+			<label for="reason">Área de interes:</label>
+			<select id="reason" class="form-control" ng-model="subscription.reason">
+				<option value="">Seleccione</option>
+				<option value="1">Asesoria</option>
+				<option value="2">Cotización</option>
+				<option value="3">Distribución de productos</option>
+				<option value="4">Ofrecer proveeduria</option>
+				<option value="5">Otra</option>
+				<option value="6">Quejas y sugerencias</option>
+				<option value="7">Solicitud de empleo</option>
+			</select>
+		</div>
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" id="notice_of_privacy" ng-model="subscription.noticeOfPrivacy" required> He leído el aviso de privacidad
+			</label>
+			<span class="required">*</span>
+		</div>
+		<button type="submit" class="btn btn-success" id="send_contact" ng-disabled="!subscriptionForm.$valid">Aceptar</button>
+		<button type="submit" class="btn btn-danger" id="cancel_contact">Cancelar</button>
+	</form>
+</article>

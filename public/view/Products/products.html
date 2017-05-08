@@ -1,0 +1,94 @@
+<div ng-controller="ProductsController" ng-init="init();">
+	<aside class="col-lg-offset-1 col-lg-3 col-md-4 hidden-sm hidden-xs margin-top-30">
+		<article id="product-sidebar">
+			<h4>Productos</h4>
+			<div class="list-group">
+	            <a class="list-group-item" ng-repeat="category in categoriesList" ng-click="loadProducts(category.category_alias)" ng-class="category.category_alias == categorySelected ? 'active' : '' " 
+	            ng-href="#!/products/{{category.category_alias}}"
+	            >
+	            	{{category.name}}
+	            </a>
+			</div>
+		</article>
+		<div ng-include src="'../view/Shared/Asides/subscription.html'"></div>
+	</aside>
+	<section class="col-lg-7 col-md-8 col-sm-12 col-xs-12" ng-hide="productDetail != null && productDetail != ''">
+		<div class="page-header">
+			<ol class="breadcrumb">
+			  <li><a href="{{$location.$$absUrl}}"><span class="glyphicon glyphicon-home"></span></a></li>
+			  <li class="active">{{categoryNameSelected}}</li>
+			</ol>
+			<h1>Productos</h1>
+		</div>
+		<div class="panel panel-default"><!-- START PANEL -->
+			<div class="panel-heading">
+				<h3 class="panel-title">Productos</h3>
+			</div>
+			<div class="panel-body">
+				<!-- START CONTENT PANEL BODY -->
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center" ng-repeat="product in productsList">
+					<div class="thumbnail" >
+						<img ng-src="../..{{product.src_img}}">
+						<div class="caption">
+						<h4>{{product.name}}</h4>
+						<p class="no_serie">{{product.num_serie}}</p>
+						<p>
+							<a href="#!/products/{{product.category_alias}}/{{product.product_alias}}" class="btn btn-primary width-100" role="button">Más información</a>
+						</p>
+						</div>
+					</div>
+				</div>
+				<!-- END CONTENT PANEL BODY -->
+			</div>
+		</div><!-- START PANEL -->
+		<div class="row box-center">
+			<nav aria-label="Page navigation">
+				<ul class="pagination pagination-md">
+					<li class="disabled">
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li class="active"><a href="#">1</a></li>
+					<!--
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					-->
+					<li class="disabled">
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+	<section class="col-lg-7 col-md-8 col-sm-12 col-xs-12" ng-show="productDetail != null && productDetail != ''">
+		<div class="page-header">
+			<ol class="breadcrumb">
+			  <li><a href="{{$location.$$absUrl}}"><span class="glyphicon glyphicon-home"></span></a></li>
+			  <li><a href="{{$location.$$absUrl}}/#!/products/{{categorySelected}}">{{categoryNameSelected}}</a></li>
+			  <li class="active">{{productNameSelected | capitalizeFirstLetter}}</li>
+			</ol>
+			<h1>Detalle del producto</h1>
+		</div>
+		<div class="panel panel-default"><!-- START PANEL -->
+			<div class="panel-heading">
+				<h3 class="panel-title">Productos</h3>
+			</div>
+			<div class="panel-body">
+				<!-- START CONTENT PANEL BODY -->
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+					<h3>{{productDetail[0].name}}</h3>
+					<label>{{productDetail[0].num_serie}}</label>
+					<img src="../..{{productDetail[0].src_img}}" class="img-responsive center-block">
+					<label>Detalle:</label>
+					<p>{{productDetail[0].lare_description}}</p>
+				</div>
+				<!-- END CONTENT PANEL BODY -->
+			</div>
+		</div><!-- START PANEL -->
+	</section>
+</div>

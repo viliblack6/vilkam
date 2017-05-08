@@ -1,0 +1,98 @@
+<section id="contact-us" class="col-lg-offset-1 col-lg-6 col-md-8 col-sm-12 col-xs-12 view">
+	<div class="page-header">
+		<h1>Contáctanos</h1>
+	</div>
+	<p>En Distribuidores Vilkam S.A. de C.V. todos los clientes son nuestros amigos, llene los siguientes datos y con gusto le atenderemos.</p>
+	<p>La confidencialidad de sus datos, se encuentra protegida conforme a las leyes relativas, de acuerdo con nuestro aviso de privacidad el cual puede ser consultado en <a href="#">www.distribuidoresvilkam.com.mx/notice-of-privacy</a></p>
+	<p>Los campos marcados con (<span class="required">*</span>) son indispensables para procesar su solicitud, gracias.</p>
+	<div class="row">
+		<form>
+			<div class="form-group">
+				<label for="name">Nombre: <span class="required">*</span></label>
+				<input type="text" class="form-control" id="name" placeholder="Nombre">
+			</div>
+			<div class="form-group">
+				<label for="email">Correo electrónico: <span class="required">*</span></label>
+				<input type="email" class="form-control" id="email" placeholder="Correo electrónico">
+			</div>
+			<!--
+			<div class="form-group">
+				<label for="gender">Sexo:</label>
+				<select id="gender" class="form-control">
+					<option value="">Seleccione</option>
+					<option value="1">Hombre</option>
+					<option value="2">Mujer</option>
+				</select>
+			</div>
+			-->
+			<!--
+			<div class="form-group">
+				<label for="country">País:</label>
+				<select id="country" class="form-control">
+					<option value="">Seleccione</option>
+					<option value="1">México</option>
+				</select>
+			</div>
+			-->
+			<div class="form-group">
+				<label for="enterprise">Empresa:</label>
+				<input type="text" class="form-control" id="enterprise" placeholder="Empresa">
+			</div>
+			<!--
+			<div class="form-group">
+				<label for="department">Departamento / área:</label>
+				<input type="text" class="form-control" id="department" placeholder="Departamento / area">
+			</div>
+			<div class="form-group">
+				<label for="street">Calle y número:</label>
+				<input type="text" class="form-control" id="street" placeholder="Calle y número">
+			</div>
+			<div class="form-group">
+				<label for="street">Colony:</label>
+				<input type="text" class="form-control" id="colony" placeholder="Colonia">
+			</div>
+			<div class="form-group">
+				<label for="delegation">Delegación o municipio:</label>
+				<input type="text" class="form-control" id="colony" placeholder="Delegación o municipio">
+			</div>
+			<div class="form-group">
+				<label for="cp">C.P.:</label>
+				<input type="text" class="form-control" id="cp" placeholder="C.P.">
+			</div>
+			-->
+			<div class="form-group">
+				<label for="telephone">Teléfono:</label>
+				<input type="tel" class="form-control" id="telephone" placeholder="Teléfono">
+			</div>
+			<div class="form-group">
+				<label for="reason">Área de interes:</label>
+				<select id="reason" class="form-control">
+					<option value="">Seleccione</option>
+					<option value="1">Asesoria</option>
+					<option value="2">Cotización</option>
+					<option value="3">Distribución de productos</option>
+					<option value="4">Ofrecer proveeduria</option>
+					<option value="5">Otra</option>
+					<option value="6">Quejas y sugerencias</option>
+					<option value="7">Solicitud de empleo</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="comments">Comentarios: <span class="required">*</span></label>
+				<textarea class="form-control" rows="5" maxlength="255" placeholder="Comentarios"></textarea>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="notice_of_privacy"> He leído el aviso de privacidad
+				</label>
+				<span class="required">*</span>
+			</div>
+			<button type="submit" class="btn btn-success" id="send_contact">Aceptar</button>
+			<button type="submit" class="btn btn-danger" id="cancel_contact">Cancelar</button>
+		</form>
+	</div>
+</section>
+<aside class="col-lg-4 col-md-4 hidden-sm hidden-xs margin-top-30">
+	<div ng-include src="'../view/Shared/Asides/infoStore.html'"></div>
+	<div ng-include src="'../view/Shared/Asides/subscription.html'"></div>
+</aside>

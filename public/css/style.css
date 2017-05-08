@@ -1,0 +1,274 @@
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/**
+ * FUENTES
+ */
+@font-face {
+  font-family: Coiny-Regular;
+  src: url(../fonts/Coiny-Regular.ttf);
+}
+
+.navbar-brand,
+.navbar-default .navbar-brand,  
+.navbar-default .navbar-brand h1, 
+.navbar-default .navbar-brand h2{  
+  font-family: Coiny-Regular;
+  color: #F9002E;
+  text-shadow: 0px 0px 20px #FFF;
+}
+a{
+  color: rgba(50, 50, 50, .7);
+}
+a:hover{
+  text-decoration: none;
+  color: rgba(50, 50, 50, 1);
+}
+
+
+/**
+ * MENÚ HEADER
+ */
+.navbar-default{
+  height: 100px;
+  background-image: url("../img/Black-Metal-Texture.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: solid 1px #FAAC15;
+}
+.navbar-default .mask{
+  position: relative;
+  left: 0;
+  top: -20px;
+  padding-top: 20px;
+  *background-image: linear-gradient(to bottom, #6BA7D6 0, #438EC8 100%);
+  background-image: linear-gradient(to bottom, #6BA7D6 0, rgba(67, 142, 200, .9) 100%);
+}
+.clear-menu{ padding-top: 100px; background-color: red; }
+.navbar-default .navbar-nav>.open>a{
+  background-image: linear-gradient(to bottom,#6BA7D6 0,#438EC8 100%);
+}
+.navbar-default .navbar-nav>li>a, 
+.dropdown-menu>li>a { color: rgba(255, 255, 255, 1); }
+.dropdown-menu>li>a:hover{
+  color: #FAAC15;
+  background-image: linear-gradient(to bottom, #6BA7D6 0, #438EC8 100%);
+}
+
+/**
+ * FOOTER
+ */
+footer{
+  display: inline-block;
+  border-top: solid 1px #FAAC15;
+  background-image: url("../img/Black-Metal-Texture.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+footer .container{
+  width: 100%; 
+  *background-image: linear-gradient(to bottom, #6BA7D6 0, #438EC8 100%);
+  background-image: linear-gradient(to bottom, rgba(107, 167, 214, .9) 0, #438EC8 100%);
+}
+footer a{
+  color: #fff;
+}
+footer .list-inline>li {
+  display: inline-block;
+  padding-right: 1px;
+  padding-left: 1px;
+}
+
+
+hr{
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 8px auto;
+  height: 0;
+  width: 100%;
+  max-height: 0;
+  font-size: 1px;
+  line-height: 0;
+  clear: both;
+  border: none;
+  border-bottom: solid 1px #FAAC15;
+  padding-top: 10px;
+  padding-bottom: 40px;
+}
+body{
+  padding: 0;
+  margin: 0;
+  background-color: #F8F8F8;
+}
+section{
+  *padding-bottom: 30px;
+}
+article{
+  margin-bottom: 25px;
+  border: solid 1px #E7E7E7;
+  padding: 10px 20px;
+  background-color: rgba(250, 250, 250, 0.9);
+  border-radius: 4px;
+  display: block;
+}
+textarea{
+  resize: none;
+}
+
+.panel-default>.panel-heading, .breadcrumb{
+  background-image: -webkit-linear-gradient(top,#FAAC15 0,#FAC115 100%);
+  background-image: -o-linear-gradient(top,#FAAC15 0,#FAC115 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#FAAC15),to(#FAC115));
+  background-image: linear-gradient(to bottom,#FAAC15 0,#FAC115 100%);
+  border: solid 1px #FAAC15;
+  color: rgba(255, 255, 255, 1);
+}
+.breadcrumb>li+li:before {
+  padding: 0 5px;
+  color: rgba(255, 255, 255, 1);
+  content: "/\00a0";
+}
+.breadcrumb a{
+  color: rgba(255, 255, 255, 1);
+}
+
+.fz-12{
+  font-size: 13px;
+}
+.content{
+  background-color: rgba(255, 255, 255, 1);
+  width: 100%;
+  height: 100%;
+}
+.view{
+  padding-bottom: 30px;
+}
+.container-fluid, .row{
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+.navbar{
+  margin-bottom: 0;
+}
+
+.width-100{
+  width: 100%;
+}
+.margin-top-30{
+  margin-top: 30px;
+}
+.margin-bottom-20{
+  margin-bottom: 20px;
+}
+.margin-bottom-30{
+  margin-bottom: 30px;
+}
+.margin-bottom-50{
+  margin-bottom: 50px;
+}
+.margin-top-bottom-50{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.margin-top-bottom-30{
+  margin: 30px 0;
+}
+.padding-bottom-30{
+  padding-bottom: 30px;
+}
+#marks div img{
+  width: 100%;
+}
+.marks{
+  background-image: url("../img/background-steel.jpg");
+  width: 100%;
+  height: 100%;
+
+  *background-attachment: fixed; /* Create the parallax scrolling effect */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/*
+$font-size: 26px;
+$line-height: 1.4;
+$lines-to-show: 3;
+*/
+.thumbnail h4{
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  min-height: 80px;
+  margin: 0 auto;
+  line-height: 1.4;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.thumbnail .no_serie{
+  min-height: 40px;
+}
+
+.nav-bar-products{
+}
+.nav-bar-product{
+  width: 10.8%;
+  border: solid 0px red;
+  display: inline-block;
+  text-align: center;
+}
+
+#loading-bar .bar {
+  //background: #2c3e50;
+  background: #F9002E;
+}
+#loading-bar-spinner .spinner-icon {
+  border-top-color: #F9002E;;
+  border-left-color: #F9002E;;
+}
+#loading-bar .peg {
+  -moz-box-shadow: #F9002E; 1px 0 6px 1px;
+  -ms-box-shadow: #F9002E; 1px 0 6px 1px;
+  -webkit-box-shadow: #F9002E; 1px 0 6px 1px;
+  box-shadow: #F9002E; 1px 0 6px 1px;
+}
+
+.required{
+  color: #F9002E;
+}
+
+#navbar-header-search-telephone #navbar-header-search{ position: relative; right: -370px; }
+#navbar-header-search-telephone #navbar-header-telephone{ margin-top: -20px; position: relative; right: -680px; }
+
+/*Centra el texto verticalmente*/
+.vertical-text-center{ display: flex; justify-content: center; align-content: center; flex-direction: column; }
+
+@media (max-width: 1200px) { /*MD*/
+  #navbar-header-search-telephone #navbar-header-search{ position: relative; right: -220px; }
+  #navbar-header-search-telephone #navbar-header-telephone{ margin-top: -20px; position: relative; right: -520px; }
+}
+
+@media (max-width: 992px) { /*SM*/
+  #menu-top{ padding-top: 0px; }
+  .clear-menu{ padding-top: 50px; }
+  .thumbnail h4{ font-size: 12px; min-height: 70px; }
+  #navbar-header-search-telephone #navbar-header-search{ position: relative; right: -470px; }
+  #navbar-header-search-telephone #navbar-header-telephone{ margin-top: -20px; position: relative; right: -680px; }
+  .navbar-default{
+    height: 50px;
+  }
+}

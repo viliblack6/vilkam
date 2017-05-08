@@ -1,0 +1,1678 @@
+/* DB */
+CREATE DATABASE vilkam
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+
+/* Almacena las categorias de los productos */
+
+DROP TABLE products;
+DROP TABLE categories;
+
+
+/* SET NAMES 'UTF8'; */
+
+CREATE TABLE categories(
+    id_category SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    src_img VARCHAR(255) NOT NULL,
+    is_available BIT DEFAULT '0',
+    created_at DATE,
+    updated_at DATE
+);
+
+/* Insert categories*/
+INSERT INTO categories VALUES(1, 'Máquinas soldadoras y carros porta máquinas', '/img/products/carros.png', '0', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO categories VALUES(2, 'Soldaduras', '/img/products/soldaduras.png', '0', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO categories VALUES(3, 'Proceso MIG', '/img/products/MIG.png', '0', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO categories VALUES(4, 'Proceso TIG', '/img/products/tig.png', '0', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO categories VALUES(5, 'Accesorios para soldar', '/img/products/acc_soldar.png', '0', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO categories VALUES(6, 'Oxicorte', '/img/products/oxicorte.png', '0', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO categories VALUES(7, 'Plasma', '/img/products/plasma.png', '0', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO categories VALUES(8, 'Seguridad', '/img/products/seguridad.png', '0', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO categories VALUES(9, 'Oxigenoterápia y Hospitalario', '/img/products/oxigenoterapia.png', '0', CURRENT_DATE, CURRENT_DATE);
+
+
+
+
+
+/* Almacena las productos */
+CREATE TABLE products(
+    id_product SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    id_category INTEGER NOT NULL REFERENCES categories (id_category),
+    num_serie VARCHAR(100) NOT NULL,
+    small_description VARCHAR(255) NOT NULL,
+    lare_description VARCHAR(3255) NOT NULL,
+    pu REAL,
+    quantity INTEGER,
+    src_img VARCHAR(255) NOT NULL,
+    is_available bit DEFAULT '0',
+    created_at DATE,
+    updated_at DATE
+);
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(1, 
+'MÁQUINA PARA SOLDAR TIPO INVERSOR – PROCESO ELECTRODO REVESTIDO Y TIG – ER200PLUS®',
+1, 
+'No. de parte WLD*MS-ER200PLUS', 
+'',
+'Modelo ER200 PLUS® para electrodo revestido (SMAW) y TIG (GTAW) con encendido “Easy Tig”.
+ 
+Por su reconocida tecnología de inversor y su alto ciclo de trabajo la ER200 PLUS® es una máquina que se hace indispensable en talleres de fabricaciones metálicas industriales y de mediana capacidad.
+Puede trabajar eficientemente electrodos revestidos de diámetros desde 1/16″ y hasta 5/32″ con un arco suave y estable y en TIG con el encendido “Easy TIG” desde 1/16″ y hasta 1/8″.
+ 
+Ventajas:
+ 
+*Versátil opción de proceso TIG (GTAW) con encendido “Easy TIG”.
+La punta del electrodo toca la pieza a soldar  y al momento de levantar la antorcha el arco se enciende, no más contaminación del tungsteno ni incrustaciones en la soldadura.
+ 
+*Gran poder en tamaño pequeño.
+Por la alta corriente de salida y su ciclo de trabajo puede soldar E7018 de 5/32″ de forma continua.
+ 
+*Estabilidad de arco.
+Por su construcción la estabilidad y reencendido de arco son excelentes.
+ 
+*Asa y correa superior de una pieza.
+Ergonómicamente diseñada para mover mejor y más fácil la máquina desde cualquier ángulo.
+ 
+*Alta eficiencia y menor consumo.
+Usted ahorra en su recibo de luz por que consume menos que los transformadores comunes, máximo 39 amps a 200 ampares de salida.
+ 
+*Accesorios de calidad.
+Nadie en el mercado ofrece pinza de tierra y porta electrodo de 300 amps con cable de 25mm2 en este tipo de máquinas.
+ 
+*Protección térmica.
+Para sobrecarga en la entrada de la corriente de la máquina y también para sobrecarga de trabajo para evitar que se rebase el ciclo de trabajo.
+ 
+ 
+Incluye:
+ 
+*1 máquina soldadora ER200  PLUS® con cable de poder sin clavija.
+ 
+*1 cable con pinza de tierra de 300 amps y conector rápido.
+ 
+*1 cable con porta electrodo de 300 amps y conector rápido.
+ 
+ 
+Especificaciones:
+ 
+*Tipo de Construcción: Inversor.
+ 
+*Voltaje de circuito abierto: 82 V.
+ 
+*Conexión de entrada: 220V 1 fase 60Hz.
+ 
+*Rango de salida: 20 a 200 amp CD.
+ 
+*Ciclo de trabajo: 60% a 200 amps, 100% a 155 amps.
+ 
+*Peso: 5.4 Kg.
+ 
+*Norma de fabricación: EN 60974-1.', 
+'/img/products/maquinas-soldadoras-y-carros-porta-maquinas/maquina-soldar2-WLDMS-ER200PLUS2.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(2, '', 1, '', '', '', '', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(3, '', 1, '', '', '', '', CURRENT_DATE, CURRENT_DATE);
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(4, '', 1, '', '', '', '', CURRENT_DATE, CURRENT_DATE);
+
+/* Insert products: id_category = 1 */
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(1, 'CARRO DE TRES NIVELES PARA MÁQUINA DE SOLDAR', 1, 'No. de parte WLD*MS-CART12', '', '"Fabricado en acero de alta resistencia con pintura electróstatica de color negro para mayor duración.
+Recibe cilindros de hasta 19 cm (7-1/2”) de diámetro.
+Repisa superior inclinada de 29.21 cm (11-1/2”) x 48.26 cm (19”) de fácil acceso.
+Cuenta con ganchos para colgar los cables y/o mangueras. Resiste hasta 49.89 Kg (110 Lbs)"', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/CARRITO-CART121-150x150.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(2, 'CARRO UNIVERSAL PARA MÁQUINA DE SOLDAR', 1, 'No. de parte WLD*MS-CART31', '', '"Fabricado en acero de alta resistencia con pintura electrostática de color negro para mayor duración.
+Recibe cilindros de hasta 19 cm (7-1/2”) de diámetro.
+Repisa superior inclinada de 32.38 cm (12-3/4”) x 51.43 cm (20-1/4”) de fácil acceso.
+Resiste 49.89 Kg (110 Lbs)."', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/CARRITO-CART31-150x150.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(3, 'CARRO GRANDE PARA MÁQUINA DE SOLDAR', 1, 'No. de parte WLD*MS-CART41', '', '"Fabricado en acero de alta resistencia con pintura electrostática de color negro para mayor duración.
+Recibe cilindros de hasta 19 cm (7-1/2”) de diámetro.
+Altura desde el piso de 76.2 cm (30”) para tener los controles de la máquina a la mano y sin necesidad de agacharse.
+Repisa superior de 35.56 cm (14”) de ancho x 50.8 cm (14”) de profundidad es excelente para colocar una máquina TIG. Cuenta con ganchos para colgar los cables y/o mangueras. Resiste hasta 68 Kg (159 Lbs)."', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/CARRITO-CART412-150x150.png', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(4, 'CARRO PEQUEÑO CON GABINETE PARA MÁQUINA DE SOLDAR', 1, 'No. de parte WLD*MS-CART71', '', '"Fabricado en acero de alta resistencia con pintura electrostática de color negro para mayor duración.
+Recibe cilindros de hasta 19 cm (7-1/2”) de diámetro.
+Repisa superior para fácil acceso a la máquina.
+La repisa tiene 49.53 cm (19-1/2”) de profundidad x 32.38 cm (12-3/4”) de ancho.
+Cuenta con ganchos para colgar los cables y/o mangueras. Resiste hasta 68 Kg (159 Lbs).
+Gabinete inferior con seguro."', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/CARRITO-CART711-150x150.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(5, 'MÁQUINA PARA SOLDAR WELD500® TIPO INVERSOR – PROCESO ELECTRODO REVESTIDO Y TIG- MODELO ER200PLUS®', 1, 'No. de parte WLD*MS-ER200PLUS', '', '"Modelo ER200 PLUS® para electrodo revestido (SMAW) y TIG (GTAW) con encendido “Easy Tig”.
+ 
+Por su reconocida tecnología de inversor y su alto ciclo de trabajo la ER200 PLUS® es una máquina que se hace indispensable en talleres de fabricaciones metálicas industriales y de mediana capacidad. Puede trabajar eficientemente electrodos revestidos de diámetros desde 1/16″ y hasta 5/32″ con un arco suave y estable y en TIG con el encendido “Easy TIG” desde 1/16″ y hasta 1/8″.
+ 
+Ventajas:
+ 
+*Versátil opción de proceso TIG (GTAW) con encendido “Easy TIG”.
+La punta del electrodo toca la pieza a soldar  y al momento de levantar la antorcha el arco se enciende, no más contaminación del tungsteno ni incrustaciones en la soldadura.
+ 
+*Gran poder en tamaño pequeño.
+Por la alta corriente de salida y su ciclo de trabajo puede soldar E7018 de 5/32″ de forma continua.
+ 
+*Estabilidad de arco.
+Por su construcción la estabilidad y reencendido de arco son excelentes.
+ 
+*Asa y correa superior de una pieza.
+Ergonómicamente diseñada para mover mejor y más fácil la máquina desde cualquier ángulo.
+ 
+*Alta eficiencia y menor consumo.
+Usted ahorra en su recibo de luz por que consume menos que los transformadores comunes, máximo 39 amps a 200 ampares de salida.
+ 
+*Accesorios de calidad.
+Nadie en el mercado ofrece pinza de tierra y porta electrodo de 300 amps con cable de 25mm2 en este tipo de máquinas.
+ 
+*Protección térmica.
+Para sobrecarga en la entrada de la corriente de la máquina y también para sobrecarga de trabajo para evitar que se rebase el ciclo de trabajo.
+ 
+ 
+Incluye:
+ 
+*1 máquina soldadora ER200  PLUS® con cable de poder sin clavija.
+ 
+*1 cable con pinza de tierra de 300 amps y conector rápido.
+ 
+*1 cable con porta electrodo de 300 amps y conector rápido.
+ 
+ 
+Especificaciones:
+ 
+*Tipo de Construcción: Inversor.
+ 
+*Voltaje de circuito abierto: 82 V.
+ 
+*Conexión de entrada: 220V 1 fase 60Hz.
+ 
+*Rango de salida: 20 a 200 amp CD.
+ 
+*Ciclo de trabajo: 60% a 200 amps, 100% a 155 amps.
+ 
+*Peso: 5.4 Kg.
+ 
+*Norma de fabricación: EN 60974-1."', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/ER-200-PLUS-150x150.jpg
+', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(6, 'MÁQUINA PARA SOLDAR TIPO INVERSOR – MULTI PROCESOS – M500®', 1, 'No. de parte WLD*MS-M500K', '', 'Modelo M500® para Mig (GMAW y FCAM), electrodo revestido (SMAW), Tig (GTAW) y Arco Aire (CAC-A).
+ 
+Por su reconocida tecnología de inversor y su característico multi procesos, único en el mercado la M500® es una máquina que se hace indispensable en obras de construcciones y talleres de fabricaciones metálicas, industriales de todo tipo. Puede trabajar eficientemente alambres sólidos en 0.035″ y 0.045″ y tubulares de 0.045 y 1/16″, electrodos revestidos hasta  1/4″, en TIG con encendido de scratch electrodos de tungsteno hasta de 5/32″ y electrodos de carbón de hasta  de 5/16″.
+ 
+Ventajas:
+ 
+*Versátil y práctica.
+Con una sola perilla se cambia de proceso entre MIG con mezcla o CO2, electrodo revestido, arco aire y Tig.
+ 
+*Gran poder en tamaño compacto.
+Por la alta corriente de salida y su ciclo de trabajo puede soldar alambres sólidos en o.035″ y o.045″ y tubulares de 0.045″ y 1/16″, electrodos revestidos de 1/4″ o más, en Tig con encendido de scratch electrodos de tungsteno hasta de 5/32″ y electrodos de carbón de hasta de 5/16″.
+ 
+*Ahorro en el consumo de energía.
+Requiere solo 34 amps a 440 volts con 89% de eficiencia.
+ 
+*Seguridad y limpieza.
+Alimentador de 4 rodillos con cubierta de protección para el rollo de soldadura y para los rodillos, así se evita la posibilidad de suciedad en el alambre y se reducen los accidentes y mala calidad.
+ 
+*Carro porta máquina.
+Ergonómicamente diseñado para mover mejor y más fácil la máquina desde cualquier ángulo, además el alimentar puede girar para hacer mas fácil la soldadura.
+ 
+*Precisión y sencillez.
+Indicadores digitales con controles prácticos para el tipo de proceso, arranque de arco y potencia de arco, nadie da tanto por tan poco.
+ 
+*Alta eficiencia y menor consumo.
+Usted ahorra en su recibo de luz por que consume menos que los transformadores comunes.
+ 
+*Estabilidad de arco.
+Por su construcción la estabilidad y reencendido de arco son excelentes.
+ 
+*Protección térmica.
+Para sobrecarga en la entrada de la corriente de la máquina también para sobrecarga de trabajo para evitar que se rebase el ciclo de trabajo.
+ 
+ 
+Incluye:
+ 
+*1 máquina soldadora M500® con cable de poder sin clavija.
+ 
+*1 cable de interconexión máquina-alimentador.
+ 
+*1 cable con pinza de tierra de 500 amps y conector rápido.
+ 
+*1 conector rápido para conectar el cable y el porta electrodo.
+ 
+*1 carro porta máquina, alimentador y cilindro de gas.
+ 
+*1 pistola MIG tipo Tregaskiss®
+ 
+*1 alimentador cerrado de 4 rodillos.
+ 
+*2 juegos de rodillos (1 sólido, 1 tubular)
+ 
+ 
+Especificaciones:
+ 
+*Entrada: 220/440V  CA 3 Fases.
+ 
+*Ciclo: 50/60 Hz.
+ 
+*Corriente de entrada máxima a salida nominal: 34A.
+ 
+*Tamaño de cable recomendado: AWG # 10.
+ 
+*Norma de Fabricación: EN 60974-1.
+ 
+*Salida Nominal:
+ 
+100% ciclo de trabajo – 387 amps a 440V-3 fases.
+100% ciclo de trabajo – 320 amps a 220V-3 fases.
+60% ciclo de trabajo – 500 amps a 440-3 fases.', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/maquina-soldar4-WLDMS-M500K.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(7, 'MÁQUINA PARA SOLDAR TIPO INVERSOR – PARA ELECTRODO REVESTIDO Y TIG – ER315PLUS®', 1, 'No. de parte WLD*MS-ER315PLUS-K', '', 'Modelo ER315 PLUS® para electrodo revestido (SMAW) y Tig (GTAW) con encendido “Easy Tig”
+ 
+Por su reconocida tecnología de inversor y su alto ciclo de trabajo la ER315 PLUS® es una máquina que se hace indispensable en obras de construcción y talleres de fabricaciones metálicas industriales de todo tipo. Puede trabajar eficientemente electrodos revestidos de diámetro desde 1/16″ y hasta 1/4″ con arco suave y estable.
+ 
+Ventajas:
+ 
+*Versátil opción de proceso TIG (GTAW) con encendido de arco “Easy TIG”.
+Como opción se ofrece la antorcha Tig.
+ 
+*Gran poder en tamaño compacto.
+Por la corriente de salida y su ciclo de trabajo puede soldar E7018 de 1/4″ de forma continua.
+ 
+*Versatilidad a toda prueba.
+Debido a su construcción especial puede conectarse a generadores de gasolina o diesel produciendo un arco muy estable.
+ 
+*Seguridad y confianza.
+Unica en el mercado con el sistema VRD que reduce el voltaje de circuito abierto a niveles seguros (15) para el soldador, la calidad no cuesta más.
+ 
+*Asa superior de una pieza.
+Ergonomicamente diseñada para mover mejor y más fácil la máquina desde cualquier ángulo, ademas se incluye una práctica correa para cargarla al hombro.
+ 
+*Precisión y sencillez.
+Panel digital con controles digitales para el tipo de proceso, arranque de arco y potencia de arco, nadie da tanto por tan poco.
+ 
+*Alta eficiencia y menor consumo.
+Usted ahorra en su recibo de luz por que consume menos que los transformadores comunes, 62.4 amps a 220 volts 1 fase y 31.2 amps a 220 volts 3 fases.
+ 
+*Estabilidad de arco.
+Por su construcción  la estabilidad y reencendido de arco son excelentes.
+ 
+*Protección Térmica.
+Para sobrecarga en la entrada de la corriente de la máquina y también para sobrecarga de trabajo para evitar que se rebase el ciclo de trabajo.
+ 
+ 
+Incluye:
+ 
+*1 máquina soldadora ER315 PLUS® con cable de poder sin clavija.
+ 
+*1 cable con pinza de tierra de 300 amps y conector rápido.
+ 
+*1 cable con porta electrodo de 300 amps y conector rápido.
+ 
+ 
+Especificaciones:
+ 
+*Entrada: 220V CA 1 fase / 3 fases.
+ 
+*Ciclo: 50/60 Hz.
+ 
+*Corriente de entrada máxima a salida nominal: 62.4 A @ 220V CA-1 Fase – 31.2 A @ 220V CA-3 Fases.
+ 
+*Tamaño de cable recomendado: AWG # 12.
+ 
+*Norma de fabricación: EN 60974-1.
+ 
+*Ciclo de trabajo: 100%  a 250 amps, 60% a 315 amps.', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/maquina-soldar6-WLDMS-ER315PLUS-K.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(8, 'MÁQUINA PARA SOLDAR TIPO INVERSOR – PARA TIG PULSADO Y ELECTRODO REVESTIDO – TT200®', 1, 'No. de parte WLD*MS-TT200K', '', 'Modelo TT200® para Tig (GTAW) AC/DC pulsado y electrodo revestido (SMAW).
+ 
+Combina en una sola fuente de poder la conveniencia de la tecnología de un inversor con proceso TIG con alta frecuencia AC/DC y la versatilidad del electrodo revestido AC/DC. Ideal para soldadura de tuberías, aplicaciones sanitarias, construcciones metálicas y trabajos generales de mantenimiento.
+ 
+Ventajas:
+ 
+* Versátil opción de proceso TIG (GTAW) AC/DC y pulsado.
+Control total del a soldadura, per-flujo y pos-flujo de gas, tipo de onda, frecuencia, balance, relleno de cráter,2T, 4T y programable. Control remoto de pie opcional, se vende por separado.
+ 
+* Gran poder en tamaño compacto.
+Por la alta corriente de salida y su ciclo de trabajo puede soldar con electrodos de tungsteno de hasta 1/8″ y electrodos E7018 de 5/32″ de forma continua.
+ 
+*Ajuste automático del voltaje de alimentación.
+Unica en el mercado que puede trabajar desde 90 y hasta 270 volts AC de entrada, innovacion , gran calidad y confianza en la marca.
+ 
+* Asa superior de una pieza.
+Ergonomicamente diseñada para mover mejor y más fácil la máquina desde cualquier ángulo.
+ 
+* Precisión y sencillez.
+Panel digital con controles digitales para el tipo de proceso, perilla selectora multi funciones de fácil control, nadie da tanto por tan poco.
+ 
+* Alta eficiencia y menor consumo.
+Usted ahorra en su recibo de luz por que consume menos que los trasnformadores comunes, máximo 25.2 amps con más del 85% de eficiencia.
+ 
+* Estabilidad de arco.
+Por su construcción la estabilidad y reencendido de arco son excelentes.
+ 
+* Protección Térmica.
+Para sobrecarga en la entrada de la corriente de la máquina y también para sobrecarga de trabajo para evitar que se rebase el ciclo de trabajo.
+ 
+ 
+Incluye:
+ 
+* 1 máquina soldadora TT200® con cable de poder sin clavija.
+ 
+* 1 cable con pinza de tierra de 300 amps y conector rápido.
+ 
+* 1 flujómetro de prueba.
+ 
+* 1 antorcha TIG modelo 26 con gatillo.
+ 
+* 1 juego de manguera para gas con conexiones.
+ 
+ 
+Especificaciones:
+ 
+* Entrada: Desde 90 hasta 270V 1 Fase.
+ 
+* Ciclo: 50/60 Hz.
+ 
+* Corriente de entrada máxima a salida nominal: 25.2 A.
+ 
+* Tamaño de cable recomendado: AWG #12.
+ 
+* Norma de fabricación: EN60974-1.
+ 
+* Ciclo de trabajo:
+ 
+100% a 110V / 120 amps (GTAW CA) – 116 amps (SMAW CA)
+60% a 110V / 160 amps (GTAW CA) – 130 amps (SMAW CA)
+100% a 220V / 120 amps (GTAW CA) – 120 amps (SMAW CA)
+60% a 220V / 165 amps (GTAW CA) – 165 amps (SMAW CA)', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/maquina-soldar8-WLDMS-TT200K.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(9, 'MÁQUINA PARA SOLDAR TIPO INVERSOR – MULTI PROCESOS – TO200®', 1, 'No. de parte WLD*MS-TO200', '', 'Modelo TO200® para electrodo revestido (SMAW), Tig (GTAW) con encendido “Easy Tig”,  Mig (GMAW) y con sistema Spool Gun.
+ 
+Por su reconocida tecnología de inversor y su característico multi-proceso, único en el mercado la TO200® es una máquina que se hace indispensable en talleres de fabricaciones metálicas industriales de mediana capacidad y en talleres de mantenimiento. Puede trabajar eficientemente electrodos revestidos de diámetros desde 1/16″ y hasta 5/32″ con un arco suave y estable, en TIG con el encendido “Easy TIG” desde 1/16″ y hasta 1/8″, en proceso MIG desde alambres de .023″ y hasta .035″, bien sea con protección de gas o auto protegido, así como también para soldadura de aluminio y aceros con el sistema Spool Gun, en pocas palabras TODO EN UNA Y LISTA PARA USARSE.
+ 
+ 
+Ventajas:
+ 
+*Gran poder en tamaño pequeño.
+Por la alta corriente de salida y su ciclo de trabajo puede soldar E7018 de 5/32″ de forma contínua.
+ 
+*Versátil opción de proceso TIG (GTAW) con encendido “Easy TIG”.
+La punta del electrodo toca la pieza a soldar y al momento de levantar la antorcha el arco se enciende, no más contaminación del tungsteno ni incrustaciones en la soldadura.
+ 
+*Versatilidad y poder en proceso MIG.
+Con pistola de mano o con Spool Gun no hay soldadura que no se pueda realizar con la nueva TO200®, Aluminio, Acero, Acero Inoxidable, alambres sólidos o tubulares, no hay barreras para está máquina, ni en metales base ni en procesos de soldadura.
+ 
+*Accesorios de calidad.
+Nadie en el mercado ofrece la calidad ni la variedad de accesorios en este tipo de máquinas.
+ 
+*Asa superior de una pieza.
+Ergonomicamente diseñada para mover mejor y más fácil la máquina desde cualquier ángulo.
+ 
+*Estabilidad de arco.
+Por su construcción la estabilidad y reencendido de arco son excelentes.
+ 
+*Protección técnica.
+Para sobrecarga en la entrada de la corriente de la máquina y también sobrecarga de trabajo para evitar que se rebase el ciclo de trabajo.
+ 
+ 
+Incluye:
+ 
+*1 máquina soldadora TO200® con cable de poder sin clavija.
+ 
+*1 cable con pinza de tierra de 300 amps y conector rápido.
+ 
+*1 cable con porta electrodo de 300 amps y conector rápido.
+ 
+*1 pistola MIG de 300 amps.
+ 
+*1 antorcha TIG de 200 amps enfriada por aire.
+ 
+*1 manguera de gas de 3 metros con conexiones.
+ 
+*1 pistola Spool Gun para carretes de 1 kg o .5 kilos.
+ 
+*1 kit de consumibles para proceso TIG.
+ 
+*1 pinza para soldador MIG.
+ 
+*1 flujómetro de prueba
+ 
+ 
+Especificaciones: 
+ 
+*Entrada: 220V 1 Fase.
+ 
+*Ciclo: 50/60 Hz.
+ 
+*Corriente de entrada máxima a salida nominal: 36A
+ 
+*Tamaño de cable recomendado: AWG # 12.
+ 
+* Norma de fabricación: EN60974-1.
+ 
+*Ciclo de trabajo:
+ 
+100%      126 amps (GTAW) – 126 amps (GMAW) – 107 amps (SMAW).
+40%     200 amps (GTAW) – 200 amps (GMAW) – 170 amps (SMAW).', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/maquina-soldar10-WLDMS-TO200.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(10, 'MÁQUINA PARA SOLDAR TIPO INVERSOR – MULTI PROCESOS – M390®', 1, 'No. de parte WLD*MS-M390K', '', 'Modelo M390® para Mig  (GTAW y FCAW), electrodo revestido (SMAW), Tig (GTAW) y arco aire (CAC-A).
+ 
+Por su reconocida tecnología de inversor y su característico multi proceso, único en el mercado la M390® es una máquina que se hace indispensable en obras de construcciones y talleres de fabricaciones metálicas industriales de todo tipo. Puede trabajar eficientemente alambres sólidos desde 0.030″ y hasta 0.045″, tubulares de .045″ y 1/16″, electrodos revestidos hasta de  1/4″, TIG con el encendido scratch electrodos de tungsteno de hasta 5/32″ y electrodos de carbón de hasta 1/4″.
+ 
+ 
+Ventajas:
+ 
+*Gran poder en tamaño compacto.
+Por la alta corriente de salida y su ciclo de trabajo puede soldar alambres sólidos desde 0.30″ hasta o.045″ y tubulares de 0.045″ y 1/16″,electrodos revestidos de 1/4″ o más, Tig y arco aire.
+ 
+*Ahorro en el consumo de energía.
+Requiere solo 46 amps con 85% de eficiencia.
+ 
+*Seguridad y limpieza.
+Alimentador de 4 rodillos con cubierta de protección para el rollo de soldadura y para los rodillos, así se evita la posibilidad de suciedad en el alambre y se reducen los accidentes y  mala calidad.
+ 
+*Carro porta máquina.
+Ergonomicamente diseñado e integrado a la máquina para mover mejor y más fácil el equipo desde cualquier ángulo, además el alimentador puede girar para hacer más fácil la soldadura.
+ 
+*Precisión y sencillez.
+Indicadores digitales con controles prácticos, nadie de tanto por tan poco.
+ 
+*Estabilidad de arco.
+Por su construcción la estabilidad y re-encendido  de arco son excelentes.
+ 
+*Protección Térmica.
+Para sobrecarga en la entrada de la corriente de la máquina y también para sobrecarga de trabajo para evitar que se rebase el ciclo de trabajo.
+ 
+ 
+Incluye:
+ 
+*1 Máquina soldadora M390® con cable de poder sin clavija.
+ 
+*1 Cable de interconexión máquina-alimentador de 4.5mts.
+ 
+*1 Cable con conector rápido y pinza de tierra de 4mts.
+ 
+*1 Manguera para gas de protección de 7mts. con conexiones.
+ 
+*1 Carro integrado a la máquina.
+ 
+*1 Pistola MIG tipo Tweco® de 400 amperes.
+ 
+*1 Alimentador cerrado de 4 rodillos.
+ 
+*2 Juegos de rodillos para alambre sólido de .030″-.035″ y .045″-1/16″
+ 
+*1 Pinza para soldador.
+ 
+*1 Flujómetro de prueba.
+ 
+ 
+ Especificaciones:
+ 
+*Entrada: 220V CA 3 Fases.
+ 
+*Ciclo: 50/60 Hz.
+ 
+*Corriente de entrada máxima a salida nominal: 46 A.
+ 
+*Tamaño de cable recomendado: AWG #10.
+ 
+*Norma de fabricación: EN 60974-1.
+ 
+*Salida nominal:
+ 
+100% ciclo de trabajo, 310 amps.
+ 
+80% ciclo de trabajo, 347 amps.
+ 
+60% ciclo de trabajo, 400 amps.', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/maquina-soldar11-WLDMS-M390K.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(11, 'MÁQUINA PARA SOLDAR TIPO INVERSOR – PARA ELECTRODO REVESTIDO Y TIG – ER390PLUS®', 1, 'No. de parte WLD*MS-ER390', '', 'Modelo ER390 PLUS® para electrodo revestido (SMAW) y Tig (GTAW) con encendido “Easy Tig”.
+ 
+Por su reconocida tecnología de inversor y su alto ciclo de trabajo la ER390 PLUS® es una máquina que se hace indispensable en obras de construcción y talleres de fabricaciones metálicas industriales de todo tipo. Puede trabajar eficientemente electrodos revestidos de diámetros desde 1/16″ y hasta 1/4″ con un arco suave y estable.
+ 
+Ventajas:  
+ 
+ 
+*Versátil opción de proceso TIG (GTAW) con encendido de arco “Easy TIG”.
+Como opción se ofrece la antorcha TIG para conectarse directamente a la máquina
+ 
+*Gran poder en tamaño compacto.
+Por la alta corriente de salida y su ciclo de trabajo puede soldar E7018 de 1/4″ de forma continua.
+ 
+*Versatilidad a toda prueba.
+Debido a su construcción especial es muy ligera es muy ligera y se puede llevar muy fácilmente, sin embargo es muy robusta y resistente.
+ 
+*Asa superior de una pieza.
+Ergonómicamente diseñada para mover mejor y más fácil la máquina desde cualquier ángulo, además se incluye una práctica correa para cargarla al hombro.
+ 
+*Precisión y sencillez.
+Panel digital con controles de perilla para el tipo de proceso, arranque de arco y potencial de arco, nadie da tanto por tan poco.
+ 
+*Alta eficiencia y menor consumo.
+Usted ahorra en su recibo de luz por que consume menos que los transformadores comunes, 50 amps a 220 volts 3 fases al 100% ciclo de trabajo.
+ 
+*Estabilidad de arco.
+Por su construcción la estabilidad y reencendido de arco son excelentes.
+ 
+*Protección térmica.
+Para sobrecarga en la entrada de la corriente de la máquina y también para sobrecarga de trabajo para evitar que se rebase el ciclo de trabajo.
+ 
+ 
+Incluye:
+ 
+* 1 Máquina soldadora ER390PLUS® con cable de poder sin clavija.
+ 
+*1 Cable con pinza de tierra de 500 amps y conector rápido.
+ 
+*1 Cable con porta electrodo de 500 amps y conector rápido.
+ 
+ 
+Especificaciones: 
+ 
+*Entrada: 220V CA Fases.
+ 
+*Ciclo: 50/60  Hz.
+ 
+*Corriente de entrada máxima a salida nominal: 50 A.
+ 
+*Tamaño de cable recomendado: AWG #12
+ 
+*Salida Nominal: 100% a 310 amps, 60% a 400 amps.
+ 
+*Norma de fabricación: EN 60974-1.', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/maquina-soldar16-WLDMS-ER390K.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(12, 'MÁQUINA PARA SOLDAR TIPO INVERSOR – MULTI PROCESOS – M251®', 1, 'No. de parte WLD*MS-MIG251-K', '', 'Modelo M251® para Mig (GMAW y FCAW), electrodo revestido (SMAW) y Tig (GTAW).
+ 
+Por su reconocida tecnología de inversor y su característico multi proceso, único en el mercado, la M251® es una máquina que se hace indispensable en obras de construcciones y talleres de fabricaciones metálicas industriales de todo tipo. Puede trabajar eficientemente alambres sólidos desde .030″ y hasta .045″ y tubulares de .035″ y .045″ con o sin protección de gas, electrodos revestidos hasta de 5/32″, TIG con encendido scratch electrodos de tungsteno de hasta 1/8″.
+ 
+Ventajas:
+ 
+*Indicadores digitales.
+De muy fácil lectura por su tamaño y diseño, información a primera vista.
+ 
+*Controles independientes de amperaje y voltaje para MIG y electrodo revestido.
+Facilita la operación y manejo preciso por el soldador.
+ 
+*Opcionalmente puede usar Spool Gun.
+Se vende por separado el Spool Gun y hace que la soldadura de Mig en aluminio sea más fácil que nunca.
+ 
+*Control de seguro en el gatillo.
+Interruptor que funciona en la pistola y Spool Gun (2 step) apagado / encendido y seguro en interruptor  (4 step) para mayor comodidad del soldador ya que no requiere presionar el gatillo durante toda la soldadura.
+ 
+*Construcción robusta.
+Con alimentador de 4 rodillos y ruedas de 8″, mejoran la alimentación del alambre y la hacen resistente a toda prueba.
+Nota: Los rodillos alimentadores son compatibles con los de la máquina Weld500® M390 ahorrando así partes de repuesto.
+ 
+*Fácil cambio de polaridad.
+De esta forma podemos soldar alambres tubulares sin protección de gas y en electrodo revestido y Tig  se hace muy práctica y sencilla de manejar.
+ 
+ 
+*Tamaño de carrete.
+Versátil, sin usar adaptadores puede recibir carretes de 15 y 5 kilos.
+ 
+*Excelente estabilidad de arco.
+Solo con el poder de una inversora se logra arco tan estable y preciso que logrará soldaduras sin chispas ni salpiques.
+ 
+*Perilla de encendido-apagado.
+Diseño europeo, más práctico y durable.
+ 
+*Cajita de almacenamiento de consumibles.
+Sencilla y segura forma de guardar y evitar que se pierdan los consumibles y/o los rodillos alimentadores de alambre.
+ 
+ 
+Incluye:
+ 
+*1 máquina soldadora M251® con cable de poder sin clavija.
+ 
+*1 cable de 3 metros con pinza de tierra y conector rápido.
+ 
+*1 pistola MIG de 300 amps. de 15´ de largo.
+ 
+*1 kit de accesorios:
+ 
+-2 juegos de rodillos alimentadores lisos para alambre sólido desde .030″ y hasta .045″
+-2 juegos de rodillos alimentadores estriados para alambre tubular desde .030″ y hasta .045″
+-3 puntas de contacto y 1 llave allen.
+ 
+*1 juego de manguera para gas de protección de 2 metros con conexiones.
+ 
+*1 flujómetro de prueba.
+ 
+*1 pinza MIG para soldador.
+ 
+ 
+Especificaciones:
+ 
+*Entrada: 220V CA 1 Fase.
+ 
+*Ciclo: 50/60 Hz.
+ 
+*Corriente de entrada máxima a salida nominal: 45 A.
+ 
+*Tamaño de cable recomendado: AWG # 12.
+ 
+*Norma de fabricación: EN 60974-1.
+ 
+*Salida Nominal:
+ 
+100% ciclo de trabajo - 192 amps (GMAW y FCAW) – 154 amps (SMAW).
+60% ciclo de trabajo – 250 amps (GMAW y FCAW) – 200 amps (SMAW).', '/img/products/maquinas-soldadoras-y-carros-porta-maquinas/maquina-soldar14-WLDMS-MIG251K.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+/* Insert products: id_category = 2*/
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(13, 'ALAMBRE TUBULAR PARA ACERO AL CARBONO CON GAS DE PROTECCIÓN ROLLOS 15KG.', 2, 'No. de parte WLD*1CT71T1-045-15K', '', 'TIPO E71T-1 AWS A5.20
+ 
+Para soldar en todas posiciones en uno o varios pasos en acero al carbono y algunos aceros de baja aleación, puede usarse CO2 o mezcla de CO2/Argón como gas de protección. Ideal para fabricación de puentes, recipientes a presión, equipo para movimiento de tierra, astilleros, fabricación de estructuras ligeras o pesadas, etc. Produce un arco muy suave y estable con muy poco chisporroteo o salpique, la escoria cubre completamente los cordones y es muy fácil de quitar. Aprobado por: ABS, CCS, DNV, LR, GL, BV.
+
+SKU: WLD*1CT71T1-045-15K
+Diámetro de alambre: .045"
+Presentación: Rollo 15kg.
+
+SKU: WLD*1CT71T1-116-15K
+Diámetro de alambre: 1/16""
+Presentación: Rollo 15kg.
+
+SKU: WLD*1CT71T1-035-5K
+Diámetro de alambre: .035"
+Presentación: Rollo 5kg.', '/img/products/soldaduras/035-5k.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(14, 'ALAMBRE TUBULAR PARA ACERO AL CARBONO SIN GAS DE PROTECCIÓN ROLLOS 10LBS.', 2, 'No. de parte WLD*1E71GS-030-10', '', 'TIPO E71T-GS AWS A5.20
+ 
+Para soldar en todas posiciones en un solo paso en acero al carbono, la gran ventaja es que no necesita gas de protección. Produce un arco suave y estable con muy poco chisporroteo o salpique, la escoria cubre completamente los cordones y es muy fácil de quitar. Aplicaciones típicas: unión a tope y traslape de láminas galvanizadas, reparación y construcción de techos, puertas, reparación de láminas de autos, etc.
+
+SKU: WLD*1E71GS-030-10
+Diámetro de alambre: .030"
+Presentación: 10 lbs. (4.536kg.)
+
+SKU: WLD*1CT71T1-116-15K
+Diámetro de alambre: .035"
+Presentación: 10 lbs. (4.536kg.)', '/img/products/soldaduras/Alambre-tubular-sin-gas-de-proteccion-rollo-10lb.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(15, 'SIMULADOR DE SOLDADURA GUIDEWELD VR', 2, 'No. de parte REW*56080100', '', 'El guideWELD VR es un simulador de soldadura de realidad virtual que permite a los usuarios mejorar sus habilidades básicas en soldadura y aprender las técnicas apropiadas en un ambiente seguro.
+ 
+Este rentable sistema incluye evaluaciones técnicas en:
+1.- Ángulo de trabajo, ángulo de viaje, velocidad de boquilla a la pieza, distancia y dirección.
+2.-Uniones en Tee, a traslape y a tope.
+3.- Diferentes espesores de  metal.
+Puede grabar las evaluaciones de soldadura virtual y después reproducirlas para que los instructores  y estudiantes puedan monitorear el progreso y proporcionar retroalimentación personalizada.
+Característica multi-usuario que ofrece capacidad ilimitada de usuarios y se instala fácilmente en la computadora.
+ 
+El sistema guideWELD VR incluye:
+-Pistola para simulación de soldadura con estación de trabajo con opción intercambiable para uso con GMAW (MIG) y/o SMAW (Electrodo Revestido).
+-Uniones en tee, a traslape y a tope.
+-Guantes para soldar.
+-Cable usb para estación de trabajo.
+-Fuente de alimentación para estación de trabajo.
+-Registro individual por participante conforme a las normas.', '/img/products/soldaduras/Sin-título-2.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(16, 'SISTEMA DE GUÍA EN SOLDADURA GUIDEWELD LIVE', 2, 'No. de parte REW*55080100', '', 'GuideWELD LIVE:
+ 
+Es una herramienta de entrenamiento dentro de la careta para uso con soldadura real que proporciona retroalimentación inmediata en el ángulo de trabajo, ángulo de viaje y velocidad de avance mientras el usuario está realizando la aplicación.
+ 
+Este rentable sistema corrige la forma y el posicionamiento durante la aplicación real de soldadura en casi cualquier máquina MIG.
+ 
+Permite que los instructores tengan mayor tiempo disponible para proporcionar atención individualizada.
+ 
+Incluye especificaciones de 9 procedimientos de soldadura, también esta disponible la versión de WPS personalizados.
+ 
+El sistema guideWELD LIVE incluye:
+ 
+-Careta electrónica con monitor interno para guía.
+-Tablero con sensor de ángulo.
+-Baterías AA recargables y cargador.
+-Registro individual por participante conforma a las normas.
+**NO incluye guantes.', '/img/products/soldaduras/Sin-título-1.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(17, 'ELECTRODO REVESTIDO TIPO ENI-CI', 2, 'No. de parte WLD*1ENI-CI99-332', '', 'TIPO ENi-CI AWS/SFA A5-.15
+ 
+Electrodo de Níquel puro para soldar hierro colado. Gran maquinabilidad.
+Para soldar en todas posiciones.
+Aplicaciones: Para reparaciones de monoblocks, carcazas de motores, cabezas, etc.
+
+SKU: WLD*1ENNI-CI99-332
+Descripción: 3/32"
+Presentación: Caja de 2 kg
+
+SKU: WLD*1ENI-CI99-18
+Descripción: 1/8"
+Presentación: Caja de 2 kg
+
+SKU: WLD*1ENI-CI-532
+Descripción:    5/32"
+Presentación: Caja de 2 kg', '/img/products/soldaduras/ELECTRODO-REVESTIDO-hierro-colado.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(18, 'KIT DE DEFECTOS EN SOLDADURA', 2, 'No. de parte REW*52680100', '', 'El Kit de defectos en soldadura contiene 13 modelos, incluyendo los defectos más comunes y descontinuidades que puedan ocurrir durante la soldadura. Use el Kit de defectos para ayudar a sus estudiantes a entender como ocurren los defectos en la soldadura y como abordarlos mediante la corrección tanto en la máquina como en la técnica.
+ 
+El kit incluye:
+*1 modelo de soldadura de calidad.
+*12 modelos de defectos en la soldadura.
+*1 guía de definiciones en la soldadura.
+*1 guía para el instructor.
+*1 maletín.
+*Acceso en linea al plan de estudios del Weld Defect.', '/img/products/soldaduras/kit.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(19, 'MICRO ALAMBRE TIPO ER-4043', 2, 'No. de parte WLD*1A-4043-035-1', '', 'TIPO ER-4043 AWS/SFA A5.10
+ 
+Fabricado con la más moderna y avanzada tecnología, durante la limpieza se asegura de eliminar completamente los óxidos superficiales y los lubricantes normales del trefilado, en el proceso de encarretado se pone estricta atención para lograr uniformidad en las capas, se controla el cast y el helix para alcanzar niveles óptimos de alimentación, tanto en equipos automáticos como semi-automáticos y el análisis químico es siempre uniforme, cumpliendo con los estrictos requerimientos AWS.
+
+SKU: HA*4043-030-1
+Descripción:    .030"
+Presentación: Rollo .4536 kg. (1 Lb.) **Sobre pedido
+
+SKU: HA*4043-035-1
+Descripción:    .035"
+Presentación: Rollo .4536 kg. (1 Lb.)
+
+SKU: HA*4043-035-16
+Descripción:    .035"
+Presentación: Rollo 7.2 kg. (16 Lbs.)
+
+SKU: HA*4043-364-1
+Descripción:    3/64"
+Presentación: Rollo .4536 kg. (1 Lb.)
+
+SKU: HA*4043-364-16
+Descripción:    3/64"
+Presentación: Rollo 7.2 kg. (16 Lbs.)
+
+SKU: WLD*1A-4043-364-16
+Descripción:    3/64"
+Presentación: Rollo 7.2 kg. (16 Lbs.)
+
+SKU: WLD*1A-4043-045-16
+Descripción:    .045"
+Presentación: Rollo 7.2 kg. (16 Lbs.)
+
+SKU: WLD*1A-4043-035-1
+Descripción:    .035"
+Presentación: Rollo .4536 kg. (1 Lb.)', '/img/products/soldaduras/WLD-1A4043-035-11.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(20, 'VARILLA DE APORTE TIPO ER-4043 (NUEVA PRESENTACIÓN)', 2, 'No. de parte HA*4043-116-36', '', 'Fabricado con la más moderna y avanzada tecnología, durante la limpieza se asegura de eliminar completamente los óxidos superficiales y los lubricantes normales del trefilado. Aleación de aluminio al Silicio con gran fluidez y excelente apariencia de cordón, las aplicaciones comunes son en partes automotrices, construcción de Tráileres, intercambiadores de calor, evaporadores, fabricación de bicicletas, etc. Es ideal para soldar también por Brazing hojas delgadas o tubings.
+
+SKU: HA*4043-116-36
+Descripción:        1/16"
+Presentación: Caja 4.536 kg. (10 Lbs.)', '/img/products/soldaduras/500-X-500-VARILLA-.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(21, 'MICRO ALAMBRE TIPO ER-5356', 2, 'No. de parte HA*5356-030-1', '', 'TIPO ER-5356 AWS/SFA A5.10
+ 
+Fabricado con la más moderna y avanzada tecnología, durante la limpieza se asegura de eliminar completamente los óxidos superficiales y los lubricantes normales del trefilado, en el proceso de encarretado se pone estricta atención para lograr uniformidad en las capas, se controla el cast y el helix para alcanzar niveles óptimos de alimentación, tanto en equipos automáticos como semi-automáticos y el análisis químico es siempre uniforme, cumpliendo con los estrictos requerimientos AWS.
+
+SKU: HA*5356-030-1
+Descripción:   .030"
+Presentación: Rollo .4536 kg. (1 Lb.) **Sobre pedido', '/img/products/soldaduras/aluminio-5356-micro-alambre-rollo-1lb.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(22, 'VARILLA DE APORTE TIPO ER-5356', 2, 'No. de parte HA*5356-116-36', '', 'TIPO ER-5356 AWS/SPA A5.10
+ 
+Fabricado con la más moderna y avanzada tecnología, durante la limpieza se asegura de eliminar completamente los óxidos superficiales y los lubricantes normales del trefilado. Aleación de aluminio al Silicio con gran fluidez y excelente apariencia de cordón, las aplicaciones comunes son en partes automotrices, construcción de Tráileres, intercambiadores de calor, evaporadores, fabricación de bicicletas, etc. Es ideal para soldar también por Brazing hojas delgadas o tubings.
+
+SKU: HA*5356-116-36
+Descripción:    1/16"
+Presentación: Caja 4.536 kg. (10 Lbs.) **Sobre pedido', '/img/products/soldaduras/ALUMINIO.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(23, 'ALAMBRE TUBULAR PARA ACERO AL CARBONO SIN GAS DE PROTECCIÓN ROLLOS 2LBS.', 2, 'No. de parte WLD*1E71GS-030-2', '', '
+TIPO E71T-GS AWS A5.20
+ 
+Para soldar en todas posiciones en un solo paso en acero al carbono, la gran ventaja es que no necesita gas de protección. Produce un arco suave y estable con muy poco chisporroteo o salpique, la escoria cubre completamente los cordones y es muy fácil de quitar. Aplicaciones típicas: unión a tope y traslape de láminas galvanizadas, reparación y construcción de techos, puertas, reparación de láminas de autos, etc.
+SKU                 Diámetro de alambre                 Presentación
+WLD*1E71GS-030-2    .030"                               2 lbs. (.9072kg.)
+WLD*1E71GS-035-2    .035"                               2 lbs. (.9072kg.)', '/img/products/soldaduras/030-2.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(24, 'MICRO ALAMBRE TIPO ER308L', 2, 'No. de parte WLD*1IN308L-030-1K**sobre pedido', '', 'TIPO ER308L AWS/SFA A5.9
+ 
+Micro alambre para proceso GMAW de acero inoxidable, diámetro calibrado. Juntas a tope o a traslape, filetes, tuberías, y en cualquier aplicación de aceros inoxidables, cubriendo las especificaciones AWS/SFA ER308L y ER316L, contenido de Carbono extra bajo que evita la precipitación de carburos. Excelente para soldaduras de calidad en las industrias alimenticia, farmacéutica, química, petrolera y para la industria en general.
+SKU                                         Diámetro de alambre                 Presentación
+WLD*1IN308L-030-1K**sobre pedido            .030"                               1kg.
+WLD*1IN308L-035-1K**sobre pedido            .035"                               1kg.
+WLD*1IN308L-035-15K**sobre pedido           .035"                               15kg.
+WLD*1IN308L-045-15K**sobre pedido           .045"                               15kg.', '/img/products/soldaduras/Acero-inox.-micro-alambre-rollo-1kg.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+/* Insert products: id_category = 3*/
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(25, 'PUNTAS DE CONTACTO CÓNICAS TIPO TWECO® 200 AMP (CM INDUSTRIES®)', 3, 'No. de parte KCM*K14T-30', '', '
+SKU                     Descripción
+KCM*K14T-30             Punta de contacto .030"
+KCM*K14T-35             Punta de contacto .035"
+KCM*K14T-45             Punta de contacto .045"
+KCM*K14T-52             Punta de contacto .052"
+', '/img/products/proceso-mig/Punta-de-contacto-serie-14-conicas.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(26, 'LINERS TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K42-3035-15', '', 'SKU                                Descripción
+WLD*WM-K42-3035-15                  Liner .030-.035" 15FT
+WLD*WM*K42-4045-15                  Liner .040-.045" 15FT', '/img/products/proceso-mig/Guia-liner-K44-116-15.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(27, 'DIFUSORES TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K52', '', '
+SKU                                 Descripción
+WLD*WM-K52                          Difusor
+WLD*WM-K52-FN                       Difusor
+', '/img/products/proceso-mig/Difusor-WLD-WM-K52.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(28, 'BOQUILLAS AISLANTES TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K32', 'SKU                                Descripción
+WLD*WM-K32                          Boquilla aislante', '', '/img/products/proceso-mig/Boquilla-aislante-32.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(29, 'TOBERAS ESTÁNDAR ROSCADAS TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K23-50', '
+SKU                                 Descripción
+WLD*WM-K23-50                       Tobera 1/2"
+WLD*WM-K23-62                       Tobera 5/8"', '', '/img/products/proceso-mig/Boquilla-estandar-roscada-CM.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(30, 'TOBERAS HEAVY DUTY TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K23H-62', '', '
+SKU                                 Descripción
+WLD*WM-K23H-62                      Tobera 5/8"', '/img/products/proceso-mig/Boquilla-Estandar-roscada.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(31, 'TOBERAS CÓNICAS TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K23T-37', '', '
+SKU                                 Descripción
+WLD*WM-K23T-37                      Tobera 3/8"', '/img/products/proceso-mig/Boquilla-Conica-HD.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(32, 'PUNTAS DE CONTACTO ESTÁNDAR TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K14-23', '', '
+SKU                                 Descripción
+WLD*WM-K14-23                       Punta de contacto .023"
+WLD*WM-K14-30                       Punta de contacto .030"
+WLD*WM-K14-35                       Punta de contacto .035"
+WLD*WM-K14-40                       Punta de contacto .040"
+WLD*WM-K14-45                       Punta de contacto .045"
+WLD*WM-K14-52                       Punta de contacto .052"
+WLD*WM-K14-116                      Punta de contacto 1/16"', '/img/products/proceso-mig/Punta-de-contacto-serie-14.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(33, 'PUNTAS DE CONTACTO HEAVY DUTY TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K14AH-364', '', '
+SKU:                                 Descripción:
+WLD*WM-K14AH-364                    Punta de contacto 3/64" Al
+WLD*WM-K14H-35                      Punta de contacto .035"
+WLD*WM-K14H-40                      Punta de contacto .040"
+WLD*WM-K14H-45                      Punta de contacto .045"
+WLD*WM-K14H-52                      Punta de contacto .052"
+WLD*WM-K14H-116                     Punta de contacto 1/16"', '/img/products/proceso-mig/Punta-de-contacto-serie-14-HD.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(34, 'PUNTAS DE CONTACTO CÓNICAS TIPO TWECO® 200 AMP (WELD500®)', 3, 'No. de parte WLD*WM-K14T-30', '', '
+SKU                                 Descripción
+WLD*WM-K14T-30                      Punta de contacto .030"
+WLD*WM-K14T-35                      Punta de contacto .035"
+WLD*WM-K14T-45                      Punta de contacto .045"
+WLD*WM-K14T-52                      Punta de contacto .052"
+', '/img/products/proceso-mig/Punta-de-contacto-serie-14-conicas.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(35, 'PISTOLAS PARA SOLDAR POR PROCESO MIG – MARCA (WELD500®) TIPO TWECO® 200 AMP', 3, 'No. de parte WLD*WM-KL215', '', '
+SKU                                 Descripción
+WLD*WM-KL215                        Pistola MIG 15 FT Conector tipo Lincoln®
+WLD*WM-KM210                        Pistola MIG 10 FT Conector tipo Miller®
+WLD*WM-KM215                        Pistola MIG 15 FT Conector tipo Miller®', '/img/products/proceso-mig/200-AMPS-TIPO-TWECO.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(36, 'LINERS TIPO TWECO® 200 AMP (CM INDUSTRIES®)', 3, 'No. de parte KCM*K42-3035-15', '', '
+SKU:                                Descripción:
+KCM*K42-3035-15                     Liner .030-.035" 15FT
+KCM*K42-4045-15                     Liner .040-.045" 15FT', '/img/products/proceso-mig/Guia-liner-K44-116-15.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+
+
+/* Insert products: id_category = 4 */
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(37, 'ANTORCHAS SERIE 17 CAPACIDAD 150 AMP', 4, 'No. de parte WLD*WT17V-12-2', '', '
+SKU                 Capacidad           Longitud            Descripción
+KCM*T17V-12-2       150 amperes         12.5 FT             Flexible con válvula cable de poder 2pz
+KCM*T17V-25-2       150 amperes         25 FT               Flexible con válvula cable de poder 2pz
+KCM*T17FV-25-R      150 amperes         25 FT               Flexible con válvula cable de poder 1pz', '/img/products/proceso-tig/Antorchas-Tig-serie-17.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(38, 'ANTORCHAS SERIE 26 CAPACIDAD 200 AMP', 4, 'No. de parte WLD*WT26FV-25-2-A-CS', '', '
+SKU                         Capacidad           Longitud        Descripción
+WLD*WT26FV-25-2-A-CS        200 amperes         25 FT           Flexible con válvula y switch
+WLD*WT26FV-12-2-A           200 amperes         12.5 FT         Flexible con válvula cable de poder 2pz
+WLD*WT26FV-25-2             200 amperes         25 FT           Flexible con válvula cable de poder 2pz
+WLD*WT26FV-25-2-A           200 amperes         25 FT           Flexible con válvula cable de poder 2pz
+WLD*WT26FV-25-RAK           200 amperes         25 FT           Flexible con válvula cable de poder 1pz
+WLD*WT26V-25-2A             200 amperes         25 FT           Con válvula cable de poder 2pz
+WLD*WT26V-25-RAK            200 amperes         25 FT           Con válvula cable de poder 1pz
+KCM*T26V-12-2               200 amperes         12.5 FT         Con válvula cable de poder 2pz
+KMC*T26V-12-R               200 amperes         12.5 FT         Con válvula cable de poder 1pz
+KCM*T26V-25-2               200 amperes         25 FT           Con válvula cable de poder 2pz
+KCM*T26V-25-R               200 amperes         25 FT           Con válvula cable de poder 1pz
+KCM*T26FV-25-2              200 amperes         25 FT           Flexible con válvula cable de poder 2pz
+KCM*T26FV-25-R              200 amperes         25 FT           Flexible con válvula cable de poder 1pz', '/img/products/proceso-tig/serie-26-200-amp.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(39, 'ANTORCHAS SERIE 9 CAPACIDAD 125 AMP', 4, 'No. de parte WLD*WT9FV-25-R', '', '
+SKU                 Capacidad           Longuitud       Descripción
+WLD*WT9FV-25-R      125 amperes         25 FT           Flexible con válv. cable de poder 1 pz.
+KCM*T9FV-25-2       125 amperes         25 FT           Flexible con válv. cable de poder 2 pzs.', '/img/products/proceso-tig/Antorchas-Tig-serie-9.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(40, 'ANTORCHA SERIE 18 CAPACIDAD 250 AMP', 4, 'No. de parte WLD*WT18V-25-R', '', '
+SKU                     Capacidad           Longitud
+WLD*WT18V-25-R          350 amperes         25 FT
+WLD*WT18-25-R           350 amperes         25 FT
+KCM*T18-12              350 amperes         12.5 FT
+KCM*T18-25-R            350 amperes         25 FT
+KCM*T18-25              350 amperes         25 FT
+KCM*T18-50-R            350 amperes         50 FT
+KCM*T18V-25             350 amperes         25 FT
+KCM*T18V-25-R           350 amperes         25 FT', '/img/products/proceso-tig/Antorchas-Tig-serie-18.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(41, 'ANTORCHAS SERIE 20 CAPACIDAD 250 AMP', 4, 'No. de parte WLD*WT20-12R', '', '
+SKU                     Capacidad               Longitud
+WLD*WT20-12R            250 amperes             12.5 FT
+WLD*WT20-25R            250 amperes             25 FT
+KCM*T20-12              250 amperes             12.5 FT
+KCM*T20-25              250 amperes             25 FT
+KCM*T20-25R             250 amperes             25 FT', '/img/products/proceso-tig/ANTORCHA-SERIE-20.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(42, 'ALÚMINA PARA GAS LENS CHICO SERIE 9 Y 20', 4, 'No. de parte WLD*WT53N16S', '', '
+SKU                     Descripción
+WLD*WT53N61             Boquilla de alúmina 7/16" No 7 para Gas Lens
+WLD*WT53N60             Boquilla de alúmina 3/8" No 6 para Gas Lens', '/img/products/proceso-tig/WLD-WT53N611.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(43, 'PORTAMORDAZAS SERIE 9 Y 20', 4, 'No. de parte WLD*WT13N27', '', '
+SKU                     Descripción
+WLD*WT13N28             Portamordaza 3/32
+WLD*WT13N29             Portamordaza 1/8"', '/img/products/proceso-tig/PORTAMORDAZA.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(44, 'MORDAZAS SERIE 9 Y 20', 4, 'No. de parte WLD*WT13N22', '', '
+SKU                     Descripción
+WLD*WT13N23             Mordaza 3/32"
+WLD*WT13N24             Mordaza 1/8"
+WLD*WT22N23A            Mordaza 3/32"
+WLD*WT22N24A            Mordaza 1/8"', '/img/products/proceso-tig/MORDAZA.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(45, 'BOQUILLAS DE ALÚMINA Y LAVA PARA SERIE 9 Y 20', 4, 'No. de parte WLD*WT13N08', '', '
+SKU                     Descripción
+WLD*WT13N09             Boquilla de alúmina 5/16" No 5
+WLD*WT13N10             Boquilla de alúmina 3/8" No 6
+WLD*WT13N11             Boquilla de alúmina 7/16" No 7
+WLD*WT13N12             Boquilla de alúmina 1/2"
+WLD*WT13N13             Boquilla de alúmina 5/8" No 10
+WLD*WT13N15             Boquilla de Lava 5/16" No 5
+WLD*WT13N16             Boquilla de Lava 3/8" No 6
+WLD*WT13N17             Boquilla de Lava No 7
+WLD*WT13N18             Boquilla de Lava No 8
+WLD*WT13N19             Boquilla de Lava No 10
+WLD*WT796F71            Boquilla de Lava 1/4"
+WLD*WT796F72            Boquilla de Lava 5/16"', '/img/products/proceso-tig/BOQUILLA-DE-ALUMINA.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(46, 'CABLES DE PODER Y MANGUERAS SERIE 9', 4, 'No. de parte WLD*WT57Y01R', '', '
+SKU                     Descripción
+WLD*WT57Y01R            Cable de poder 12.5 ft, 1 pz
+WLD*WT57Y03R            Cable de poder 25 ft, 1 pz
+WLD*WT57Y01-2           Cable de poder 12.5 ft 2 pz
+WLD*WT57Y03-2           Cable de poder 25 ft, 2 pz', '/img/products/proceso-tig/41V29R.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(47, 'CABEZAS PARA ANTORCHA , MANGOS, TAPAS Y OTROS SERIE 9 Y 20', 4, 'No. de parte WLD*WT9', '', '
+SKU                 Descripción
+WLD*WT9             Cabeza para antorcha-serie 9
+WLD*WT9FV           Cabeza para antorcha flexible con válvula-serie 9
+WLD*WT9P            Cabeza recta para antorcha-serie 9
+WLD*WT9V            Cabeza para antorcha con válvula-serie 9
+WLD*WT20            Cabeza para antorcha 250A-serie 20
+WLD*WT41V24         Tapa larga
+WLD*WT41V33         Tapa corta
+WLD*WT41V35         Tapa mediana
+WLD*WT45V11         Adaptador WP18
+WLD*WT105Z57        Adaptador para cable
+WLD*WT53N06         Mango para antorcha texturizado
+WLD*WTVS-2          Válvula para antorcha 9-17
+WLD*WTCC3-10        Cubierta para cable 3 X 10´
+WLD*WTCC-3-22       Funda para cable 3" X 22´
+WLD*WT598882        Aislador
+WLD*WT54N63-20      Aislador para Gas Lens Grande', '/img/products/proceso-tig/WLD-WT9P1.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(48, 'GAS LENS PARA ANTORCHA TIG SERIE 9 Y 20', 4, 'No. de parte WLD*WT45V43', '', '
+Consumible Gas Lens  para antorcha con Proceso TIG Serie 9 y 20. Gas Lens 1/16″, Gas Lens 3/32″ y Gas Lens 1/8″
+Marca Weld500 Modelo WLD*WT45V43
+SKU                     Descripción
+WLD*WT45V44             Gas Lens 3/32"
+WLD*WT45V45             Gas Lens 1/8"
+WLD*WT45V116S           Gas Lens 1/16"', '/img/products/proceso-tig/GAS-LENS-CHICO.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+/* Insert products: id_category = 5 */
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(49, 'CONECTORES DE CABLE', 5, 'No. de parte WLD*2-MBP-A', '', '
+Diseñado para transmitir eficientemente la corriente eléctrica a través de las dos partes desprendibles. Las partes hembra y macho están diseñadas para que con un pequeño giro se mantengan firmemente unidas. Las partes metálicas son maquinadas con precisión de aleación de cobre que evita la oxidación o corrosión. Las cubiertas del conector aíslan eléctricamente y además el material resiste calor, frío, abrasión, ozono, aceite y solventes. El material de las cubiertas está especialmente fabricado con materiales retardantes a la flama y el diseño cónico en los extremos permite que el cable se ajuste muy bien, evitando que se introduzca suciedad o polvo.
+
+SKU                     Partes que incluyen                         Capacidad de cable
+WLD*2-MBP-A             Juego Hembra / Macho                        1/0 a 3/0
+PEA*BK-25               Conector hembra para cable euro             2 a 4 (10-25mm)
+PEA*BK-50               Conector hembra para cable euro             1 a 1/0 (35-50mm)
+PEA*BK-70               Conector hembra para cable euro             1/0 a 2/0 (50-70mm)
+PEA*SK-25               Conector macho para cable euro              2 a 4 (10-25mm)
+PEA*SK-50               Conector macho para cable euro              2 a 1/0 (35-50mm)
+PEA*SK-70               Conector macho para cable euro              1/0 a 2/0 (50-70mm)
+WLD*EC-SK-70            Conector macho tipo Dinse                   50-70MM 1/0 a 2/0
+WLD*EC-SK-90            Conector macho tipo Dinse                   70-95MM 2/0 a 3/0
+WLD*EC-SK-25            Conector macho tipo Dinse                   10-25MM 2 A 4', '/img/products/accesorios-para-soldar/SK-25.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(50, 'DISCOS PARA CORTE', 5, 'No. de parte COR*DC-445', '', '
+Para corte rápido con alto rendimiento en aceros y aceros inoxidables en general.
+Ideal para corte de paredes delgadas como perfiles y tuberías.
+Buenas velocidades de corte y vida del disco.
+Ideal para corte de acero inoxidable ya que reduce la zona oscura en el corte.
+Excelente precio por relación calidad.
+SKU         Tamaño  Tipo        Espesor     Barreno central     RPM máx.    Especificaciones de grano
+COR*DC-445  4-1/2"  41 plano    0.045"      7/8"                13,300      WA 60R-BF
+COR*DC-716  7"      41 plano    1/16"       7/8"                8,500       WA 46R-BF
+COR*DC-1418 14"     41 plano    1/8"        1"                  4,400       A 30R-BF', '/img/products/accesorios-para-soldar/COR-DC-445.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(51, 'DISCOS PARA DESBASTE', 5, 'No. de parte COR*DA-414', '', '
+Para desbaste rápido con alto rendimiento en aceros e inoxidables en general.
+Excelentes velocidades de corte y vida del disco.
+Excelente precio por relación calidad.
+
+SKU             Tamaño      Tipo                    Espesor     Barreno central     RPM máx.    Especificaciones de grano
+COR*DA-414      4-1/2"      27 centro realzado      1/4"        7/8"                13,300      A 24R-BF
+COR*DA-714      7"          27 centro realzado      1/4"        7/8"                8,500       A 24R-BF', '/img/products/accesorios-para-soldar/COR-DA-414.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(52, 'FLUJÓMETRO DE PRUEBA', 5, 'No. de parte COR*PFM', '', 'Una manera económica para optimizar el flujo de gas que esta saliendo por la boquilla de la pistola MIG o la tobera de la antorcha TIG. Fabricado con acrílico de muy alta resistencia para uso rudo.', '/img/products/accesorios-para-soldar/Imagen22.png', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(53, 'ANTORCHAS ARCO-AIRE', 5, 'No. de parte WLD*61-082-008', '', '
+Para aplicaciones industriales en construcciones metal mecánicas, astilleros, estructuras, paileras, etc.
+
+SKU                 Descripción             Ángulo de la cabeza     Capacidad
+WLD*61-082-008      Antorcha tipo K4000     15°                     1000 ampares, carbones planos de hasta 3/8” y redondos desde 5/32” hasta 1/2″
+ARC*61-082-008      Antorcha K4000 EXTREME  15°                     1000 amperes, carbones planos de hasta 3/8” y redondos desde 5/32” hasta 1/2″    
+INT*61-064-017      K3                      Recta                   600 amperes, carbones planos de hasta 3/8” y redondos desde 1/8” hasta 3/8″', '/img/products/accesorios-para-soldar/WLD-K4000.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(54, 'CABLE PORTA ELECTRODO', 5, 'No. de parte CAB*4-328-KLK', '', '
+El kit incluye un rollo de cable, 1 porta electrodo y 1 pinza de tierra.
+ 
+SKU                 Calibre     Descripción             Presentación
+CAB*4-500-KLK       No. 4       Kit de cable No. 4      152.4 metros
+CAB*2-500-KLK       No. 2       Kit de cable No. 2      152.4 metros
+CAB*1/0-328-KLK     No. 1/0     Kit de cable No. 1/0    100 metros
+CAB*2/0-328-KLK     No. 2/0     Kit de cable No. 2/0    100 metros
+CAB*3/0-328-KLK     No. 3/0     Kit de cable No. 3/0    76.2 metros
+CAB*4/0-328-KLK     No. 4/0     Kit de cable No. 4/0    76.2 metros', '/img/products/accesorios-para-soldar/Rollo-cable.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(55, 'MARCADOR PLANO TIPO JABONCILLO', 5, 'No. de parte CN*NS-16', '', 'Marcador natural de mineral tipo jaboncillo. Se usa para dejar marcas temporales sobre metales durante la fabricación o soldadura. Deja marcas densas y fáciles de observar. No contamina la soldadura. También es usado para marcas temporales sobre textiles.', '/img/products/accesorios-para-soldar/CN-NS-16.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(56, 'KIT DE PRUEBA', 5, 'No. de parte TEM*TSTK', '', 'Kit de pruebas de Tempilstik en estuche de plástico, práctico y fácil de transportar. Contiene 20 mini indicadores de temperatura Tempilstik espaciados sistemáticamente entre 125°F (52° C) y 800°F (427°C). Las características del crayón y las aplicaciones son las mismas que las del los indicadores de temperatura Tempilstik.
+Número de parte TEM*TSTK (Sobre pedido)', '/img/products/accesorios-para-soldar/TEM-TSTK.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(57, 'PORTA ELECTRODOS TIPO LENCO', 5, 'No. de parte WLD*32007', '', '
+Para trabajo pesado. Fabricados en aleación de cobre para mejor conductividad eléctrica. Completamente aislados para evitar descargas eléctricas. Resorte de alta resistencia que brinda excelente poder de agarre. El recubrimiento de las mordazas es de termo endurecible con carga de fibra de vidrio. El material del mango es de termoplástico auto extinguible y resistente a la flama. Eficiente diseño de mordazas que mantiene firmemente sujetado al electrodo. Se entrega con llave Allen y lámina de cobre para hacer más sencilla y eficiente la conexión al cable, con lo que se maximiza la conductividad eléctrica.
+SKU             Capacidad       Presentación
+WLD*32007       200 amperes     50 pzas
+WLD*AF-3        300 amperes     30 pzas
+WLD*AF-50       500 amperes     30 pzas', '/img/products/accesorios-para-soldar/Porta-electrodo-Tipo-Lenco.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(58, 'LÍQUIDO ANTI SALPICADURAS BASE AGUA WELD500', 5, 'No. de parte WLD*QAS-1GL', '', '
+Está fabricado con surfactantes a base de agua que reducen las necesidades de esmerilar, cepillar o procedimientos adicionales de limpieza, por lo cual reduce los costos de producción.
+Se entrega listo para usarse, evitando mezclas en sitio, se aplica con aspersor y deja una fina capa protectora.
+Como está fabricado a base de agua y no contiene cloruros se elimina por completo el riesgo de daño a la salud o al medio ambiente, no es tóxico ni flamable.
+Seguro y efectivo producto fabricado con base en agua diseñado para ser usado en una muy amplia gama de aplicaciones.
+SKU                 Presentación
+WLD*QAS-1GL         Botella 1 galón (3.785 litros)
+WLD*QAS-5GL         Cubeta 5 galones (19 litros)
+CAN*AS-DR           Tambo 55 galones (208.17 litros)', '/img/products/accesorios-para-soldar/WLD-AS-1GL.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(59, 'PORTA ELECTRODOS TIPO JACKSON', 5, 'No. de parte WLD*AW-C', '', '
+Para trabajo pesado. Fabricados en aleación de cobre para mejor conductividad eléctrica. Completamente aislados para evitar descargas eléctricas. Resorte de alta resistencia que brinda excelente poder de agarre. El recubrimiento de las mordazas es de termo endurecible con carga de fibra de vidrio. El material del mango es de termoplástico auto extinguible y resistente a la flama. Eficiente diseño de mordazas que mantiene firmemente sujetado al electrodo. Se entrega con llave Allen y lámina de cobre para hacer más sencilla y eficiente la conexión al cable, con lo que se maximiza la conductividad eléctrica.
+
+SKU         Capacidad       Presentación
+WLD*AW-C    300 amperes     30 pzs
+WLD*A3-S    500 amperes     30 pzas', '/img/products/accesorios-para-soldar/Porta-electrodo-Tipo-Jackson.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(60, 'PINZAS PARA CORTAR CABLE', 5, 'No. de parte WLD*B-52', '', '
+Para cortar cable de hasta 4/0 y manguera de hule de 1/2″.
+No tiene partes de reemplazo.
+Ideal para trabajos de mantenimiento, fabricación, reparación, entre otras.
+Mango cubierto con vinilo de alta resistencia.
+Únicamente para cables de cobre y aluminio.', '/img/products/accesorios-para-soldar/Imagen36a.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+/* Insert products: id_category = 6 */
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(61, 'LIMPIA BOQUILLAS DE CORTE', 6, 'No. de parte WYP*STANDARD', '', '
+Los más finos limpia boquillas del mercado, agujas fabricadas en acero inoxidable serie 300 con diámetro calibrado y punta piloto para fácil inserción aseguran mejor y más rápida limpieza de las boquillas de corte y soldadura.
+SKU Descripción
+WYP*MASTER  Número de agujas 22
+WYP*STANDARD    Número de agujas 13
+COR*AG-LB2214   Número de agujas 12', '/img/products/oxicorte/LIMPIA-BOQ-CORTEC.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(62, 'MÁQUINA CORTADORA CNC PORTÁTIL', 6, 'No. de parte HUG*INTERCUT3', '', '
+*Aplicable para cortar cualquier superficie de figuras planas a lo largo del puente CNC de la máquina por plasma o flama.
+*Puerto usb garantiza la facilidad de transmisión de información entre la máquina y el software convirtiéndolo de CAD a código G para procesamiento de cortes de la máquina.
+*La integración del software de corte hace dibujos haciendo la muestra de corte mas simple permitiendo un aprovechamiento al máximo de material a cortar.
+*La máquina portátil CNC es adecuada para industrias como la automotriz, logística, aeroespacial, etc.
+ 
+Nuevo diseño:
+Para las necesidades del cliente.
+Motor integrado:
+Mejora para mayor potencia.
+Cubierta protectora para avance:
+Facilitando el mantenimiento y servicios.
+Sistema de control mejorado:
+Diferentes idiomas y pantalla Lcd de 7″.
+Sujetadores de corte modulados:
+Ideales para plasma y flama.
+Estructura de alta precisión:
+Base de aluminio y guía modular vertical.
+Rango de aplicación:
+Industria ligera y mediana.', '/img/products/oxicorte/', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(63, 'INTERCUT-S', 6, 'No. de parte HUG*INTERCUT-S', '', '
+LA MÁQUINA Y LA MESA SE VENDEN POR SEPARADO
+ 
+1.Fortalecida estructura mecánica para garantizar la velocidad y calidad de corte.
+ 
+-Alta fuerza de trabajo con flama.
+-Ejes controlados por correderas y rodamientos.
+-Arco alto facilitador de alimentación de corte y piezas de trabajo.
+-Estación de antorcha fortalecida para evitar daños en las conexiones.
+-Piezas reforzadas para evitar daños en las conexiones.
+-Guardas protectores para el cableado.
+-Fácil operación del holder de la antorcha de plasma y oxy.
+-Separación del marco con la mesa cortadora para evitar daños en los materiales.
+-Fácil nivelación y ajuste.
+ 
+2-Controlador que facilita los trabajos de corte.
+ 
+-Monitor a color de 7″ en 7 idiomas.
+-El controlador y el sistema eléctrico están en un solo gabinete.
+-La consola se ajusta a la altura del operador.
+-El angulo de visualización facilita la operación.
+-El diseño delgado facilita su instalación y acomodo.
+-Un sistema profesional para plasma y oxicorte.
+-44 ejemplos en el control.
+-Mas parámetros que facilitan el proceso de corte.
+-Compatibilidad con autocad, solidworks.
+-Puerto usb.
+-Capaz de albergar software fastcam, turbonet, etc.
+ 
+3-Sencilla Instalación.
+ 
+-Contamos con curso de 8 horas para instalación y puesta en marcha de sus equipos, si requiere de mayor tiempo de curso solicite cotización.
+ 
+4-Control automático de altura de la antorcha.
+ 
+-La antorcha no toca el plato en caso de deformación.
+ 
+Plataforma opcional
+Opción 1: Plataforma seca.
+Opción 2: Plataforma de agua.
+ 
+*Estructura fortalecida.
+*Motor dual.
+*Plasma y oxicorte.
+*Instalación.
+*Monitor a color.
+*Controlador profesional
+*Posibilidad de extender el cable del controlador.
+*Mejor precio de las máquinas actuales de arco o mesas.
+*Compatible con autocad.
+*Puerto de comunicación usb.
+*Extensiones disponibles de rieles.
+*7 idiomas disponibles en el controlador.', '/img/products/oxicorte/intercut-s.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(64, 'MANGUERA GEMELA O CUATA PARA OXÍGENO Y GASES COMBUSTIBLES – GRADO T', 6, 'No. de parte COR*MT-14100M', '', '
+Manguera gemela o cuata para Oxígeno y gases combustibles (LP, Acetileno, Gas Natural) grado “T”.
+ 
+ 
+Características:
+ 
+Esta manguera esta recomendada para conducir Oxígeno y gases combustibles como Acetileno y gas LP o natural.
+Al usar la manguera de grado T asegura a compatibilidad con el gas combustible y la seguridad del usuario.
+Además proporciona características superiores de resistencia a aceite y a la flama.
+ 
+ 
+Especificaciones:
+ 
+*Tubo interior:  Negro de EPDM
+ 
+*Tubo exterior: Vulcanizado tipo gemelo o cuata / Verde para Oxigeno y rojo para Acetileno.
+ 
+*Refuerzo: Multi espirales textiles.
+ 
+*Temperatura de trabajo: -30ºC a +70ºC
+ 
+*Diámetros: 1/4″ interno y o.512″ externo / 3/16″ interno y 0.437″ externo.
+ 
+*Presión máxima de trabajo: 300 psi.
+ 
+SKU                     Descripción
+COR*MT-14100M           Rollo de manguera gemela de 1/4". Grado "T" de 100 metros.
+COR*MT-31625            Juego de manguera gemela de 3/16". Grado "T" de 7.5 metros con conexiones 9/16" -18 UNF derecha para Oxígeno e izquierda para gas combustible.
+COR*MT-31650            Juego de manguera gemela de 3/16". Grado "T" de 15 metros con conexiones 9/16" -18 UNF derecha para Oxígeno e izquierda para gas combustible.', '/img/products/oxicorte/manguera-grado-T.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(65, 'MÁQUINA PARA CORTES RECTOS TRABAJO PESADO', 6, 'No. de parte COR*MC-12M', '', '
+Incluye:
+1 Máquina-tractor
+1 Cable de poder de 5 metros
+1 Tubo cremallera para ajuste lateral de corte
+1 Manifold para gases
+1 Riel de 1.80 metros
+1 Antorcha modelo COR*CT-I
+1 Boquilla tricónica para oxi-acetileno
+1 Boquilla tricónica para oxi-butano
+1 Juego de manguera cuata para oxígeno y gas
+1 Soporte de antorcha para ajuste de altura', '/img/products/oxicorte/COR-12M.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(66, 'EQUIPO DE CORTE OXÍGENO-ACETILENO / BUTANO SERIE A TIPO HARRIS®', 6, 'No. de parte COR*A1MABK', '', '
+COR*A1MABK
+ 
+Contiene:
+1 Soplete cortador modelo COR*ASC-18AB serie “A”, el soplete corta hasta 12”.
+1 Regulador para Oxígeno modelo COR*MO.
+1 Regulador para Acetileno modelo COR*MA.
+1 Boquilla para corte con Oxígeno-Acetileno.
+1 Boquilla para corte con Oxígeno-Butano.
+1 Encendedor sencillo modelo COR*3001B.
+ 
+ 
+COR*A1MAB-AFK (Sobre pedido)
+ 
+Este equipo incluye además de lo anterior:
+1 Juego de arresta flamas para antorcha modelo WES*FA-10
+SKU                 Descripción
+COR*A1MABK          Equipo de corte sin arrestaflamas
+COR*A1MAB-AFK       Equipo de corte con arrestaflamas (sobre pedido)', '/img/products/oxicorte/A1MABK-NUEVO.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(67, 'EQUIPO DE CORTE OXÍGENO -BUTANO SERIE A TIPO HARRIS®', 6, 'No. de parte COR*A1MBK', '', '
+COR*A1MBK
+ 
+Contiene:
+1 Soplete cortador modelo COR*ASC-18B serie “A”, el soplete corta hasta 12”.
+1 Regulador para Oxígeno modelo COR*MO.
+1 Regulador para Butano modelo COR*MP.
+2 Boquillas para corte con Oxígeno-Butano.
+1 Encendedor sencillo modelo COR*3001B.
+ 
+ 
+COR*A1MB-AFK (Sobre pedido)
+ 
+Este equipo incluye además de lo anterior:
+1 Juego de arresta flamas para antorcha modelo WES*FA-10
+SKU                 Descripción
+COR*A1MBK           Equipo de corte sin arrestaflamas
+COR*A1MB-AFK        Equipo de corte con arrestaflamas (sobre pedido)', '/img/products/oxicorte/A1MBK-NUEVO.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(68, 'EQUIPO DE CORTE Y SOLDADURA TRABAJO PESADO TIPO HARRIS®', 6, 'No. de parte COR*A3H', '', '
+Contiene:
+ 
+1 Maneral aditamento de corte modelo COR*AMAC2 serie “A”.
+1 Regulador para Oxígeno modelo COR*MO.
+1 Regulador para Acetileno modelo COR*MA.
+1 Boquilla para corte con Oxígeno-Acetileno.
+1 Encendedor sencillo modelo COR*3001B.
+1 juego de mangueras de 5 metros de largo y con conexiones incluidas.
+1 par de gafas protectoras.
+1 Mezclador para boquillas de soldar.
+1 Juego de limpia boquillas.
+1 Multi flama para Butano.
+3 Boquillas para soldar.
+1 Estuche de plástico
+1 llave multiusos', '/img/products/oxicorte/COR-A3H.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(69, 'VÁLVULAS CHECK CORTEC', 6, 'No. de parte COR*AG-60', '', '
+Permite el flujo para cortar hasta 12″ de espesor.
+Maquinado de precisión en latón de alta calidad con resorte y válvula de acero inoxidable.
+Abre a 3oz de presión positiva y cierra a 10oz. de presión negativa.
+Probadas al 100%. Asientos de Buna-N.
+ 
+ 
+SKU             Uso                                                 Presión max. de trabajo
+COR*AG-60       Jgo. de válvulas check para antorcha o soplete      Acetileno 15 PSI/Otros gases Consumibles 50PSI', '/img/products/oxicorte/CORAG60.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(70, 'ENCENDEDORES CORTEC', 6, 'No. de parte COR*AG-EN100', '', '
+SKU                 Descripción             Presentación
+COR*AG-EN100        Encendedor Sencillo     Caja de 100 piezas
+COR*AG-EN300        Encendedor Triple       Caja de 100 piezas', '/img/products/oxicorte/CORAGEN100.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(71, 'PIEDRAS PARA ENCENDEDOR CORTEC', 6, 'No. de parte COR*AG-P100B', '', '
+SKU                 Descripción         Presentación
+COR*AG-P100B        Piedra Sencilla     Bolsa de 200 piezas
+COR*AG-P300         Piedra Triple       Blister de 4 piezas', '/img/products/oxicorte/CORAGP300.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(72, 'SOPLETE DE CORTE OXÍ-ACET. U OXÍ-BUT. SERIE A', 6, 'No. de parte COR*ASC-18AB', '', '
+Cabeza de latón a 90°. Tubos de acero inoxidable colocados de manera triangular. 18” de largo. Utiliza boquillas de corte serie “A”. Corta hasta 12” de espesor.
+ 
+SKU                 Descripción
+COR*ASC-18AB        Soplete de corte sin arrestores de flama', '/img/products/oxicorte/COR-ASC-18AB1.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+/* Insert products: id_category = 7 */
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(73, 'FILTRO DE AIRE PARA MAQUINA DE CORTE POR PLASMA', 7, 'No. de parte COR*PL-REF50500', '', '
+Filtro de aire “AT 100″.
+Para máquina para corte por plasma mod. COR60 CNC y COR40 PFC.', '/img/products/plasma/filtro.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(74, 'ELECTRODO', 7, 'No. de parte COR*PL-CON7614342', '', '
+Electrodo plasma.
+Para máquina para corte por plasma mod. COR60 CNC y COR40 PFC.', '/img/products/plasma/Imagen1.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(75, 'PUNTA DE CONTACTO (40 AMPS)', 7, 'No. de parte COR*PL-CON7612124', '', '
+Punta de contacto de 40 amps ant/manual.
+Para máquina para corte por plasma mod. COR60 CNC y COR40 PFC.', '/img/products/plasma/COR-PL-CON7612124.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(76, 'PUNTA DE CONTACTO (60 AMPS)', 7, 'No. de parte COR*PL-CON7612124', '', '
+Punta de contacto 60 amps ant/manual.
+Para máquina para corte por plasma mod. COR60 CNC y COR40 PFC.', '/img/products/plasma/COR-PL-CON7612124.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(77, 'BOQUILLA', 7, 'No. de parte COR*PL-CON60389', '', '
+Copa.
+Para máquina para corte por plasma mod. COR60 CNC y COR40 PFC.', '/img/products/plasma/COR-PL-CON60389.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(78, 'BOQUILLA DE ARRASTRE', 7, 'No. de parte COR*PL-CON7613130', '', '
+Boquilla de arrastre. Para máquina por plasma mod. COR60 CNC y COR40 PFC.', '/img/products/plasma/COR-PL-CON7613130.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(79, 'REPUESTO PARA EL FILTRO', 7, 'No. de parte COR*PL-REF50505', '', '
+Repuesto para el filtro.
+Para la máquina para corte por plasma mod. COR60 CNC y COR40 PFC.', '/img/products/plasma/COR-PL-REF50505.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+/* Insert products: id_category = 8 */
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(80, 'PROTECTOR PARA GUANTE', 8, 'No. de parte WIL*BHP06', '', '
+Protege la parte trasera del guante del soldador contra salpicaduras de soldadura y altas temperaturas. Incrementa la duración de los guantes. Provee buena movilidad. Cosido y reforzado para mayor durabilidad. Fabricado con doble capa de fibra de vidrio y un recubrimiento acrílico en el interior lo que le da una fuerte resistencia a la flama y agua. Cuenta con cinco capas de material aluminizado en el exterior brindando una alta resistencia aún después de muchas horas de uso o aplicación de flama directa.', '/img/products/seguridad/5.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(81, 'CARETA ELECTRÓNICA MOD. RACING', 8, 'No. de parte WLD*SCAR-AH-4', '', '
+Careta electrónica modelo Racing. Sombra variable de 9 a 13 con ajuste de sensibilidad y control de Delay. Botón de selección para soldadura / esmerilado. Celdas solares y baterías de Litio reemplazables. Tiempo de oscurecimiento 1/25,000 segundos.
+ 
+Incluye dos bandanas, dos micas internas, dos micas externas y una práctica bolsa.', '/img/products/seguridad/CARETA-RACING-500X500.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(82, 'CARETA ELECTRÓNICA MOD. CARBON KING', 8, 'No. de parte WLD*SCAR-AH-5', '', '
+Careta electrónica modelo Carbon King. Área de visión más grande. Sombra variable de 9 a 13 con ajuste de sensibilidad y control de Delay. Botón de selección para soldadura / esmerilado. Celdas solares y baterías de Litio reemplazables. Tiempo de oscurecimiento 1/25,000 segundos.
+ 
+Incluye dos bandanas, dos micas internas, dos micas externas y una práctica bolsa.', '/img/products/seguridad/CARBONKING.jpgs', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(83, 'CARETA ELECTRÓNICA WELD500 MOD. BRASIL', 8, 'No. de parte WLD*SCAR-AH-6', '', '
+Carcaza elaborada con material altamente resistente. Sombra variable de 9 a 13 con ajuste de sensibilidad y Delay. Celdas solares y baterías de Litio reemplazables. Indicador de batería baja. Tiempo de oscurecimiento 1/25,000 segundos. Botón de selección para soldadura/esmerilado. Cumple con los estándares ANSI y CE.
+ 
+Incluye una mica interna y dos micas externas.', '/img/products/seguridad/CARETA ELECTRÓNICA WELD500 MOD. BRASIL', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(84, 'MANTA PROTECTORA RECUBIERTA DE SILICÓN', 8, 'No. de parte SKC*W36173', '', '
+Manta protectora de fibra de vidrio recubierta de Silicón en 17 y 32Oz. En color rojo. Son usadas para proteger equipos y personal que se encuentra dentro del área de operación, como en el área de soldadura, corte con flama, esmerilado, fundición, tratamientos térmicos etc. están fabricadas con telas de vidrio en diferentes espesores y recubiertas con diferentes capas para resistir temperaturas entre 300°C a 1100°C.
+SKU         Alto x ancho mts.           No de parte (anterior)  Temperatura
+SKC*W36173  .96 X 45.72 (rollo 17oz.)   WIL*3000R-38            550°C (1000F)', '/img/products/seguridad/37592-fiberglass-blanket-silicone.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(85, 'MANTA PROTECTORA RECUBIERTA DE ACRILICO', 8, 'No. de parte SKC*W36308', '', '
+Manta protectora de fibra de vidrio recubierta de Acrilico 24Oz. En color amarillo. Son usadas para proteger equipos y personal que se encuentra dentro del área de operación, como en el área de soldadura, corte con flama, esmerilado, fundición, tratamientos térmicos etc. están fabricadas con telas de vidrio en diferentes espesores y recubiertas con diferentes capas para resistir temperaturas entre 300°C a 1100°C.
+SKU                 Alto x ancho mts        No de parte (anterior)      Temperatura
+SKC*W36308          1.82 x 2.46             WIL*6848-2624               550°C (1000F)
+SKC*W37609          2.46 X 2.46             WIL*8864-2624               550°C (1000F)', '/img/products/seguridad/36308-fiberglass-blanket-acrylic.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(86, 'MANTA PROTECTORA RECUBIERTA DE VERMICULITA', 8, 'No. de parte SKC*W37597', '', '
+Manta protectora de fibra de vidrio recubierta de Vermiculita 24Oz. En color negro. Son usadas para proteger equipos y personal que se encuentra dentro del área de operación, como en el área de soldadura, corte con flama, esmerilado, fundición, tratamientos térmicos etc. están fabricadas con telas de vidrio en diferentes espesores y recubiertas con diferentes capas para resistir temperaturas entre 300°C a 1100°C.
+SKU             Alto x ancho mts.       No de parte (anterior)      Temperatura
+SKC*W36217      1.52 X 1.56             WIL*5525-906                750°C (1350F)
+SKC*W36302      1.82 X 1.82             WIL*6636-906                750°C (1350F)
+SKC*W36318      1.82 X 2.46             WIL*6848-906                750°C (1350F)', '/img/products/seguridad/37597-Fiberglass-Blanket-Vermiculite.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(87, 'CARETA ELECTRÓNICA WH4000', 8, 'No. de parte WLD*CAR-WH4000', '', '
+Careta color negro sombra variable 9 a 13. Velocidad de oscurecimiento 1/10,000 seg. Baterías solares.', '/img/products/seguridad/CAR-WH4000.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(88, 'CARETA ELECTRÓNICA WH8000', 8, 'No. de parte WLD*CAR-WH8000-FA', '', '
+Careta color azul con flamas sombra variable 9 a 13. Velocidad de oscurecimiento 1/25,000 seg. Botón de delay. Botón de sensibilidad. Baterías Ión de Litio/solares reemplazables.', '/img/products/seguridad/CAR-WH8000FA.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(89, 'TAPÓN AUDITIVO REUSABLE C/CORDÓN', 8, 'No. de parte WLD*PA-SE1323', '', '
+Tapón auditivo reusable con cordón y estuche de plástico, NRR 27.
+Material flexible que se ajusta cómodamente al canal auditivo para protección contra el ruido nocivo. De fácil inserción, reutilizable y se puede lavar con agua y jabón normal. Práctico estuche de plástico para una fácil transportación.
+100 piezas por caja.', '/img/products/seguridad/WLDPASE1323.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(90, 'TAPÓN AUDITIVO REUSABLE C/CORDÓN', 8, 'No. de parte WLD*PA-SE1329', '', '
+Tapón auditivo reusable con cordón y estuche de plástico.
+Material suave y flexible que se ajusta perfectamente al canal auditivo. Su diseño facilita la inserción y remoción del tapón. Provee una excelente protección auditiva. Cuenta con estuche de plástico y cadena para una fácil transportación.
+200 piezas por caja.', '/img/products/seguridad/SE1329.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(91, 'TAPÓN AUDITIVO DESECHABLE C/CORDÓN', 8, 'No. de parte WLD*PA-SE1373', '', '
+Tapón auditivo desechable con cordón, con espuma de poliuretano NRR 32.
+La suave espuma de poliuretano provee un cómodo y buen ajuste que crea una barrera contra el ruido perjudicial.
+200 piezas por caja.', '/img/products/seguridad/WLDPASE1373.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+/* Insert products: id_category = 9 */
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(92, 'CÁNULAS Y HUMIDIFICADORES', 9, '', '', '
+', '/img/products/oxigenoterapia-y-hospitalario/SAL-7600.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(93, 'MANIFOLDS PARA DEWARS', 9, 'No. de parte MANIFOLD', '', '
+Están diseñados para monitorear y controlar los cilindros criogénicos o Dewars, el sistema cambia automáticamente de la bancada primaria a la secundaria y al girar la palanca el sistema se reinicia e indica la bancada en uso. Se pueden conectar hasta tres Dewars por lado. Para ordenar el manifold adecuado defina la presión y consumo de gas, a continuación el tipo de gas y finalmente la cantidad de Dewars en el sistema.
+ ', '/img/products/oxigenoterapia-y-hospitalario/MANIFOLD.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(94, 'MANIFOLDS CILINDRO A CILINDRO MODELO AGM2', 9, 'No. de parte WES*AGM2-9', '', '
+Diseñados para cumplir con aplicaciones medicinales o industriales en donde se requiere de suministro ininterrumpido de gas. Sistemas que cambian automáticamente desde la bancada primaria a la secundaria. Los manifolds para uso medicinal cumplen con las normas NFPA-99 1999 y NOM-197-SSA1-2000. Se limpian para el uso específico del gas que va usarse. Probados en planta para verificar su desempeño. Fácil de instalar y de usar.
+ 
+Para ordenar el manifold adecuado:
+ 
+Primero defina el tipo de manifold, las presiones y consumo.
+A continuación seleccione el gas que usará.
+Finalmente defina el número de cilindros que manejará por lado y multiplíquelo por 2.', '/img/products/oxigenoterapia-y-hospitalario/WES-AGM2.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(95, 'MANIFOLDS CILINDRO A CILINDRO MODELO BI', 9, 'No. de parte WES*BI', '', '
+Diseñados para cumplir con aplicaciones medicinales o industriales en donde se requiere de suministro ininterrumpido de gas. Sistemas que cambian automáticamente desde la bancada primaria a la secundaria. Los manifolds para uso medicinal cumplen con las normas NFPA-99 1999 y NOM-197-SSA1-2000. Se limpian para el uso específico del gas que va usarse. Probados en planta para verificar su desempeño. Fácil de instalar y de usar.
+ 
+Para ordenar el manifold adecuado:
+ 
+Primero defina el tipo de manifold, las presiones y consumo.
+A continuación seleccione el gas que usará.
+Finalmente defina el número de cilindros que manejará por lado y multiplíquelo por 2.', '/img/products/oxigenoterapia-y-hospitalario/WES-BI.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(96, 'MANIFOLDS CILINDRO A CILINDRO MODELO HGM2', 9, '', 'No. de parte WES*HGM2-9', '
+Diseñados para cumplir con aplicaciones medicinales o industriales en donde se requiere de suministro ininterrumpido de gas. Sistemas que cambian automáticamente desde la bancada primaria a la secundaria. Los manifolds para uso medicinal cumplen con las normas NFPA-99 1999 y NOM-197-SSA1-2000. Se limpian para el uso específico del gas que va usarse. Probados en planta para verificar su desempeño. Fácil de instalar y de usar.
+ 
+ 
+Para ordenar el manifold adecuado:
+ 
+Primero defina el tipo de manifold, las presiones y consumo.
+A continuación seleccione el gas que usará.
+Finalmente defina el número de cilindros que manejará por lado y multiplíquelo por 2.', '/img/products/oxigenoterapia-y-hospitalario/WES-HGM2.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(97, 'REGULADOR PARA OXIGENOTERAPIA M1-540-15FG', 9, 'No. de parte WES*M1-540-15FG', '', '
+Amplia gama de reguladores medicinales para aplicaciones de oxigenoterapia. Confiables y seguros.
+ 
+Regulador conexión CGA-540, 2-15 LPM. Manómetro de 2″', '/img/products/oxigenoterapia-y-hospitalario/WES-M1-540-15FG.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(98, 'MANIFOLDS DE RESPALDO MODELO MD', 9, 'No. de parte WES*MD-9-2', '', '
+Diseñados para trabajar como respaldos en aplicaciones medicinales en cumplimiento con las normas NFPA-99 1999 y NOM-197-SSA1-2000 o como manifolds manuales en donde no se requiere suministro de gas de manera ininterrumpida.', '/img/products/oxigenoterapia-y-hospitalario/WES-MD-9-4.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(99, 'MANIFOLDS DE RESPALDO MODELO MS', 9, 'No. de parte WES*MS-9-2', '', '
+Diseñados para trabajar como respaldos en aplicaciones medicinales en cumplimiento con las normas NFPA-99 1999 y NOM-197-SSA1-2000 o como manifolds manuales en donde no se requiere suministro de gas de manera ininterrumpida.', '/img/products/oxigenoterapia-y-hospitalario/WES-MS-9-3.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(100, 'TODO-EN-UNO OXIGENOTERAPIA', 9, 'No. de parte WES*MTS-603', '', '
+Con el diseño exclusivo del TODO-EN-UNO suministrar oxigeno a los pacientes se ha convertido en algo muy sencillo, práctico, cómodo y económicamente rentable. Tan solo se abre la válvula lateral, y con la perilla superior se seleccionan los litros por minuto que el paciente necesita. El cuerpo de la válvula tiene el regulador, el dosificador y el puerto de llenado, todo en una sola unidad. Puede usarse con humidificador o sin él. Diseño probado por más de 10 años en el mercado.', '/img/products/oxigenoterapia-y-hospitalario/todoenuno2.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(101, 'EQUIPOS COMPLETOS DE OXIGENOTERAPIA', 9, 'No. de parte Modelo Q', '', '
+Los equipos completos son prácticos kits con todo lo necesario (excepto el Oxígeno) para que una persona pueda recibir oxigenoterapia, dependiendo del tamaño del kit puede incluir carro o bolsa para transportarlo.
+SKU             Descripción                     Contenido
+Modelo Q        Equipo tipo "Q" 1699 Lts.       Carro para 1 cilindro medicinal 12" ancho, Cilindro de aluminio 1699Lts., Regulador desmontable de 0-12Lt. CGA-540, Humidificador y Cánula nasal
+Modelo E        Equipo O2 portátil 682 Lts.     Carro cromado para 1 cilindro tipo "E", Cilindro de aluminio 682Lts., Regulador desmontable Yugo de 1/4-15LPM, Humidificador y Cánula nasal', '/img/products/oxigenoterapia-y-hospitalario/WES-OXI1699M60K.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(102, 'PIGTAILS', 9, 'No. de parte WES*PF-320-24', '', '
+Contamos con una amplia gama de pigtails para aplicación industrial o medicinal con opciones para ajustarlos a las necesidades específicas del usuario.
+ 
+**Productos sobre pedido.
+Para ordenar el pigtail adecuado:
+-Defina el tipo de manguera interna que pueden ser rígidas o flexibles.
+-Seleccione si el pigtail llevará conexiones CGA o 1/4″ NPT y si llevará válvula check o no instalada en el niple CGA.
+-Selecciones el largo en pulgadas.
+-Defina si el pigtail llevará o no guarda de seguridad.
+ 
+La correspondencia que mostramos entre el gas y el CGA está basada en los estándares CGA, sin embargo las compañías de gas pueden cambiarlos; asegúrese de que sea el CGA adecuado antes de ordenar el pigtail.', '/img/products/oxigenoterapia-y-hospitalario/WES-OKL-85071.jpg', CURRENT_DATE, CURRENT_DATE);
+
+
+
+INSERT INTO products (id_product, name, id_category, num_serie, small_description, lare_description, src_img, created_at, updated_at) VALUES(103, 'CILINDROS', 9, 'No. de parte WES*PX-8701-1T', '', '
+Los cilindros de aluminio son 40% más ligeros que los de acero. Están limpios para uso de oxígeno medicinal. Barniz transparente de seguridad, además de protegerlo contra el medio ambiente sirve para indicar cuando se sobrecalienta al aluminio durante el proceso de llenado o uso, muy fácil de limpiar. Cuerda de entrada recta para minimizar el daño al cambiar la válvula. Sello con O-ring para mayor seguridad.', '/img/products/oxigenoterapia-y-hospitalario/Tanques.jpg', CURRENT_DATE, CURRENT_DATE);

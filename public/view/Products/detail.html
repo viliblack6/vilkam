@@ -1,0 +1,85 @@
+<div ng-controller="ProductsController">
+	<aside class="col-lg-offset-1 col-lg-3 col-md-4 hidden-sm hidden-xs margin-top-30">
+		<article id="product-sidebar">
+			<h4>Productos</h4>
+			<div class="list-group">
+	            <a class="list-group-item" ng-repeat="category in categoriesList" ng-class="category.id_category == categorySelected ? 'active' : '' " 
+	            ng-href="#!/products/{{category.id_category}}"
+	            ><!--ng-href="#!/products/{{category.name.toLowerCase() | spaceless}}"-->
+	            <!--ng-click="loadProducts(category.id_category)"-->
+	            	{{category.name}} - {{$routeParams.id_category}}
+	            </a>
+			</div>
+		</article>
+		<div ng-include src="'../view/Shared/Asides/subscription.html'"></div>
+	</aside>
+	<section class="col-lg-7 col-md-8 col-sm-12 col-xs-12" ng-hide="productDetail != null && productDetail != ''">
+		<div class="page-header">
+			<h1>Productos</h1>
+		</div>
+		<div class="panel panel-default"><!-- START PANEL -->
+			<div class="panel-heading">
+				<h3 class="panel-title">Productos</h3>
+			</div>
+			<div class="panel-body">
+				<!-- START CONTENT PANEL BODY -->
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 text-center" ng-repeat="product in productsList">
+					<div class="thumbnail" >
+						<img src="../..{{product.src_img}}">
+						<div class="caption">
+						<h4>{{product.name}}</h4>
+						<p class="no_serie">{{product.num_serie}}</p>
+						<p>
+							<a href="#!/products/detail/{{product.id_product}}" class="btn btn-primary width-100" role="button">Más información</a>
+						</p>
+						</div>
+					</div>
+				</div>
+				<!-- END CONTENT PANEL BODY -->
+			</div>
+		</div><!-- START PANEL -->
+		<div class="row box-center">
+			<nav aria-label="Page navigation">
+				<ul class="pagination pagination-md">
+					<li>
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li>
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+	<section class="col-lg-7 col-md-8 col-sm-12 col-xs-12" ng-show="productDetail != null && productDetail != ''">
+		<div class="page-header">
+			<h1>Detalle del producto</h1>
+		</div>
+		<div class="panel panel-default"><!-- START PANEL -->
+			<div class="panel-heading">
+				<h3 class="panel-title">Productos</h3>
+			</div>
+			<div class="panel-body">
+				<!-- START CONTENT PANEL BODY -->
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+					<h3>{{productDetail[0].name}}</h3>
+					<label>{{productDetail[0].num_serie}}</label>
+					<img src="../..{{productDetail[0].src_img}}" class="img-responsive center-block">
+					<label>Detalle:</label>
+					<p>{{productDetail[0].lare_description}}</p>
+				</div>
+				<!-- END CONTENT PANEL BODY -->
+			</div>
+		</div><!-- START PANEL -->
+	</section>
+	<link href="/css/style.css" rel="stylesheet">
+</div>
