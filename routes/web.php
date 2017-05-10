@@ -14,6 +14,7 @@ use App\Category;
 
 Route::get('/', function () {
 	$categories = DB::select("SELECT *, LOWER(REPLACE(unaccent(name), ' ', '-')) AS category_alias FROM Categories");
+	//$categories = DB::select("SELECT *, LOWER(REPLACE(name, ' ', '-')) AS category_alias FROM Categories");
     return view('welcome')->with('categories', $categories);
 });
 

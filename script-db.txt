@@ -11,6 +11,10 @@ CREATE DATABASE vilkam
 DROP TABLE products;
 DROP TABLE categories;
 
+CREATE EXTENSION unaccent;
+CREATE EXTENSION;
+SELECT unaccent('Hôtel');
+
 
 /* SET NAMES 'UTF8'; */
 
